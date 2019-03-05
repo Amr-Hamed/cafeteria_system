@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/main.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/bootstrap.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/custom.sass">
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/_variables.scss">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/custom.sass">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/_variables.scss">
 
 </head>
 <body>

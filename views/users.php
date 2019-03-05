@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php require_once '../templates/header.php'; ?>
 
 <div style="padding: 3%">
     <h1> Users</h1>
