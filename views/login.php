@@ -12,9 +12,11 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/custom.sass">
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/_variables.scss">
-
 </head>
 <body>
+    <div>
+        <h1 class="bumpy" >Welcome! To ITI Cafeteria</h1>
+    </div>
 <div class="col-md-4 col-md-offset-4 login">
     <form class="form-signin login-form">
         <div class="text-center mb-4">
