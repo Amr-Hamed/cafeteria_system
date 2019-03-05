@@ -36,11 +36,19 @@ body{
   display: contents;
 }
 .profile-pic{
-  padding-left: 68%;
+  padding-left: 55%;
 }
 .user-name{
   padding-left: 2%;
 }
 .add-btn{
   float: right;
+}
+
+.bumpy{
+  text-align: center;
+  padding-top: 4%;
+}
+.bumpy-char {
+  position: relative;
 }
