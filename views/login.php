@@ -12,8 +12,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/custom.sass">
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/_variables.scss">
-
-
 </head>
 <body>
     <div>

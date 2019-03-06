@@ -1,13 +1,9 @@
-
-
-<?php require_once '../templates/header.php'; ?>
-
+<?php include '../templates/header.php'; ?>
 <div class="container-fluid     ">
     <div style="padding: 3%">
         <h1 style="text-align: center"> Users</h1>
         <button type="button" class="btn btn-success add-btn" data-toggle="modal" data-target="#exampleModal">Add User</button>
     </div>
-
 
     <!-- Users Table -->
 

@@ -14,8 +14,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/custom.sass">
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/_variables.scss">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -34,7 +35,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Users</a>
-                </li>
+                </li>   
                 <li class="nav-item">
                     <a class="nav-link" href="#">Manual Order</a>
                 </li>
@@ -52,7 +53,7 @@
                 </ul>
 
                 <div class="pull-right " style="padding-left: 2%">
-                    <ul class="nav pull-right user-name">
+                    <ul class="nav pull-right user-name" >
                         <li class="dropdown navbar-text"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, User <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/auth/logout"><i class="icon-off"></i> Logout</a></li>
@@ -63,6 +64,6 @@
             </div>
         </div>
     </nav>
-    <!-- </body>
+<!-- </body>
 
-</html>   --> 
+</html>   -->
