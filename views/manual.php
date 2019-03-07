@@ -18,7 +18,7 @@
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-info">-</button>
                 </div>
-                <div class="col-sm-2">50 .EGB</div>
+                <div class="col-sm-2">50 .EGP</div>
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-danger">X</button>
                 </div>
@@ -36,7 +36,7 @@
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-info">-</button>
                 </div>
-                <div class="col-sm-2">50 .EGB</div>
+                <div class="col-sm-2">50 .EGP</div>
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-danger">X</button>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-info">-</button>
                 </div>
-                <div class="col-sm-2">50 .EGB</div>
+                <div class="col-sm-2">50 .EGP</div>
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-danger">X</button>
                 </div>
@@ -88,7 +88,7 @@
             <hr>
             <!-- End Of Form -->
             <div class="total-cost">
-                <h2> Total = 150 .EGB </h2>
+                <h2> Total = 150 .EGP </h2>
             </div>
             <!-- Form Button -->
             <div class="order-btn">
@@ -124,7 +124,7 @@
                         <img class="card-img-top buy-pic" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Coffee</h5>
-                            <p class="card-text">40 .EGB</p>
+                            <p class="card-text">40 .EGP</p>
                             <div class="order-btn">
                                 <input type="submit" value="Order" class="btn btn-info">
                             </div>
@@ -135,7 +135,7 @@
                         <img class="card-img-top buy-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9bENUAlJR_HLjNjsbRMT8TloLZM1IzmgJ14l8_fX1b08PdbQv_w" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Tea</h5>
-                            <p class="card-text">50 .EGB</p>
+                            <p class="card-text">50 .EGP</p>
                             <div class="order-btn">
                                 <input type="submit" value="Order" class="btn btn-info">
                             </div>
@@ -146,7 +146,7 @@
                         <img class="card-img-top buy-pic" src="https://canolaeatwell.com/wp-content/uploads/2017/04/Slow-Cooker-Chicken-Shawarma-With-Tomato-Cucumber-Relish-1_WEB-1024x683.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">shawarma</h5>
-                            <p class="card-text">10 .EGB</p>
+                            <p class="card-text">10 .EGP</p>
                             <div class="order-btn">
                                 <input type="submit" value="Order" class="btn btn-info">
                             </div>
