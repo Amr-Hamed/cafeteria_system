@@ -32,16 +32,7 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Users</a>
-                </li>   
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Manual Order</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Checks</a>
+                    <a class="nav-link" href="#">Orders</a>
                 </li>
             </ul>
             <div class="user-profile">
