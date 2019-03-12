@@ -1,68 +1,43 @@
-<?php require '../templates/header.php' ?>
+<?php require_once('../config.php'); 
+require_once(TEMPLATE_PATH . 'header.php');
+
+$products = Products::read("SELECT p.* FROM products p WHERE p.availability = 1",null ,'Products');
+$users = Users::read("SELECT u.* FROM users u WHERE u.admin = 0",null ,'Users');
+$rooms = Users::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",null ,'Users');
+
+?>
 
 <div class="container-fluid">
+    <div class="col-sm-4" style="float:left">
     <div class="row">
-        <form class="col-sm-4 order">
+        <form>
             <h1 class="modal-header"> Order</h1>
 
-            <!-- products  -->
+            <!-- OrderItems  -->
 
-            <div class="row product-row" style="margin: auto;">
+            <div id="orderItem" class="row product-row" style="margin: auto;">
+                
                 <div class="col-sm-2">Tea</div>
                 <div class="col-sm-1">
-                    <span class="badge badge-light">4</span>
+                    <span class="badge badge-light">1</span>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-success">+</button>
+                    <button id="incItemQuantity" type="button" class="btn btn-success">+</button>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-info">-</button>
+                    <button id="decItemQuantity" type="button" class="btn btn-info">-</button>
                 </div>
-                <div class="col-sm-2">50 .EGP</div>
+                <div id="itemTotalAmount" class="col-sm-2">50 .EGP</div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-danger">X</button>
+                    <button id="removeItem" type="button" class="btn btn-danger">X</button>
                 </div>
 
             </div>
-
-            <div class="row product-row" style="margin: auto;">
-                <div class="col-sm-2">Tea</div>
-                <div class="col-sm-1">
-                    <span class="badge badge-light">4</span>
-                </div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-success">+</button>
-                </div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-info">-</button>
-                </div>
-                <div class="col-sm-2">50 .EGP</div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-danger">X</button>
-                </div>
-
-            </div>
-
-            <div class="row product-row" style="margin: auto;">
-                <div class="col-sm-2">Tea</div>
-                <div class="col-sm-1">
-                    <span class="badge badge-light">4</span>
-                </div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-success">+</button>
-                </div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-info">-</button>
-                </div>
-                <div class="col-sm-2">50 .EGP</div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-danger">X</button>
-                </div>
 
             </div>
 
             <!-- End orders -->
-            <hr>
+            <hr />
             <!-- start notes -->
             <div class="form-group shadow-textarea">
                 <label for="exampleFormControlTextarea6">Notes</label>
@@ -75,13 +50,17 @@
             <div class="form-group row">
                 <label for="room" class="col-md-3 col-form-label text-md-center">Room</label>
                 <div class="col-md-8">
-                    <input type="dropdown" id="room" list="categories" class="form-control" name="full-name">
-                    <datalist id="categories">
-                        <option>67</option>
-                        <option>43</option>
-                        <option>98</option>
-                    </datalist>
 
+                    <select name="user" style="width: 100%;padding-top:2%;margin-top:2%">
+                        <option selected>Select Room</option>
+                        <?php if(isset($rooms)) {
+                            foreach ($rooms as $room) {?>
+
+                                <option value="<?php echo $room['room']; ?>"><?php echo $room['room'];?></option>
+
+                        <?php }}?>
+
+                    </select>            
                 </div>
             </div>
             <!-- End room number -->
@@ -97,63 +76,49 @@
         </form>
 
         <!-- menu -->
-        <div class="col-sm-7 ">
+        </div>
+        <div class="col-sm-7 " style="float:left">
             <div class="add-to-user">
                 <div class="form-group row">
                     <label for="user" class="col-md-3 col-form-label text-md-center">
                         <h3>Add To User :</h3>
                     </label>
                     <div class="col-md-8">
-                        <input type="dropdown" id="user" list="users" class="form-control" name="full-name">
-                        <datalist id="users">
-                            <option>Gomaa</option>
-                            <option>Hesham</option>
-                            <option>Magdy</option>
-                        </datalist>
+                        <select name="user" style="width: 100%;padding-top:2%;margin-top:2%">
+                            <option selected>Select User</option>
+                             <?php if(isset($users)) {
+                                foreach ($users as $user) {?>
 
+                                    <option value="<?php echo $user['id']; ?>"><?php echo $user['name'];?></option>
+
+                            <?php }}?>
+            
+                        </select>
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr />
 
 
             <!-- products -->
-            <div class="container">
-                <div class="row">
-                    <div class="card col-sm-3 product-card" style="width: 18rem;">
-                        <img class="card-img-top buy-pic" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG" alt="Card image cap">
+            <div class="container" style="clear:both">
+                <?php if(isset($products)) {
+                    foreach ($products as $product) {?>
+                    <div class="card col-sm-3 product-card" style="float:left">
+                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo "data:image/jpeg;base64," . base64_encode($product['product_picture']); ?>" alt="Card image cap" />
                         <div class="card-body">
-                            <h5 class="card-title">Coffee</h5>
-                            <p class="card-text">40 .EGP</p>
+                            <h5 class="card-title"><?php echo $product['product_name']; ?></h5>
+                            <p class="card-text"><?php echo $product['price']; ?> .EGP</p>
+                            <input type="hidden" value="<?php echo $product['id'] ?>" />
                             <div class="order-btn">
-                                <input type="submit" value="Order" class="btn btn-info">
+                                <input type="button" value="Order" class="btn btn-info" />
                             </div>
                         </div>
                     </div>
 
-                    <div class="card col-sm-3 product-card" style="width: 18rem;">
-                        <img class="card-img-top buy-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9bENUAlJR_HLjNjsbRMT8TloLZM1IzmgJ14l8_fX1b08PdbQv_w" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Tea</h5>
-                            <p class="card-text">50 .EGP</p>
-                            <div class="order-btn">
-                                <input type="submit" value="Order" class="btn btn-info">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col-sm-3 product-card" style="width: 18rem;">
-                        <img class="card-img-top buy-pic" src="https://canolaeatwell.com/wp-content/uploads/2017/04/Slow-Cooker-Chicken-Shawarma-With-Tomato-Cucumber-Relish-1_WEB-1024x683.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">shawarma</h5>
-                            <p class="card-text">10 .EGP</p>
-                            <div class="order-btn">
-                                <input type="submit" value="Order" class="btn btn-info">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <?php } } ?>
             </div>
+
         </div>
     </div>
 </div>

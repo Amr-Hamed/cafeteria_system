@@ -18,7 +18,7 @@ define('PS' , PATH_SEPARATOR);
 define( 'HOST_NAME' , 'https://' .  $_SERVER['HTTP_HOST'] . '/');
 //paths
 define('APP_PATH' , realpath(dirname(__FILE__)) . DS );
-define( 'TEMP_PATH' , APP_PATH . 'templates' . DS);
+define( 'TEMPLATE_PATH' , APP_PATH . 'templates' . DS);
 define( "LIB_PATH" , APP_PATH . 'lib' . DS);
 define( "MODELS_PATH" , APP_PATH . 'models' . DS);
 define( "VIEWS_PATH" , APP_PATH . 'views' . DS);
@@ -28,20 +28,18 @@ define('DB_NAME' , 'cafeteria_system');
 define('DB_USER' , 'Gom3a');
 define('DB_PASS' , '123456');
 
-
-//adding autoloading
-// require_once('./lib/dbConnection.php');
-function __autoload($class){
-    require_once( './lib/' . $class . '.php');
-}
-
-$dbh = DBConnection::getInstance();
-
 //setting new path
 $path =  get_include_path() . PS . LIB_PATH . PS . MODELS_PATH;
 set_include_path($path);
 
-require_once(VIEWS_PATH . 'login.php');
+//adding autoloading
+// require_once('./lib/dbConnection.php');
+function __autoload($class){
+    require_once($class . '.php');
+}
+
+$dbh = DBConnection::getInstance();
+
 
 
 //end buffer and send output
