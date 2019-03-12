@@ -1,6 +1,6 @@
 <?php 
 
-Class Products {
+Class Products extends DBModel {
 
     public $id;
     public $product_name;

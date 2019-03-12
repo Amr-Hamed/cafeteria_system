@@ -14,11 +14,59 @@ class DBModel{
         }
         return implode( " , " , $sqlString );
     }
-    public function add(){
+    
+    public static function read($sql, $type = PDO::FETCH_ASSOC, $class = null)
+    {
         global $dbh;
-        $sql = "INSERT INTO " . $this->tableName . " SET " . $this->setAttributes() . " ;" ; 
-        // $dbh->exec($sql);
-        echo $sql;
+        $results = $dbh->query($sql);
+        if($results) {
+            if(null !== $class && $type == PDO::FETCH_CLASS) {
+                $data = $results->fetchAll($type, $class);
+            } else {
+                $data = $results->fetchAll($type);
+            }
+            if(count($data) == 1) {
+                $data = array_shift($data);
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    private function add ()
+    {
+        global $dbh;
+        $sql = "INSERT INTO " . $this->tableName . " SET " . $this->attributes();
+        $affectedRows = $dbh->exec($sql);
+        if ($affectedRows != false) {
+            $this->id = $dbh->lastInsertId();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private function update ()
+    {
+        global $dbh;
+        $sql = "UPDATE " . $this->tableName . " SET " . $this->attributes() .
+                 ' WHERE id = ' . $this->id;
+        $affectedRows = $dbh->exec($sql);
+        return $affectedRows != false ? true : false;
+    }
+
+    public function delete ()
+    {
+        global $dbh;
+        $sql = "DELETE FROM " . $this->tableName . ' WHERE id = ' . $this->id;
+        $affectedRows = $dbh->exec($sql);
+        return $affectedRows != false ? true : false;
+    }
+    
+    public function save()
+    {
+        return ($this->id === null) ? $this->add() : $this->update();
     }
 
 }

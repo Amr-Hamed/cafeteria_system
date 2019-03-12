@@ -1,6 +1,6 @@
 <?php 
 
-Class Categories {
+Class Categories extends DBModel {
 
     public $id;
     public $name;

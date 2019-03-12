@@ -1,6 +1,6 @@
 <?php 
 
-Class Users {
+Class Users extends DBModel {
 
     public $id;
     public $name;

@@ -1,6 +1,6 @@
 <?php 
 
-Class OrderItems {
+Class OrderItems extends DBModel {
 
     public $order_id;
     public $product_id;

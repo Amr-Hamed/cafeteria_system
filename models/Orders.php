@@ -1,6 +1,6 @@
 <?php 
 
-Class Orders {
+Class Orders extends DBModel {
 
     public $id;
     public $user_id;
