@@ -21,11 +21,12 @@ define('APP_PATH' , realpath(dirname(__FILE__)) . DS );
 define( 'TEMP_PATH' , APP_PATH . 'templates' . DS);
 define( "LIB_PATH" , APP_PATH . 'lib' . DS);
 define( "MODELS_PATH" , APP_PATH . 'models' . DS);
+define( "VIEWS_PATH" , APP_PATH . 'views' . DS);
 //DB credentials
 define('DB_HOST' , 'localhost');
-define('DB_NAME' , 'cafeteria-system');
-define('DB_USER' , 'bondok');
-define('DB_PASS' , '1234');
+define('DB_NAME' , 'cafeteria_system');
+define('DB_USER' , 'Gom3a');
+define('DB_PASS' , '123456');
 
 
 //adding autoloading
@@ -33,23 +34,14 @@ define('DB_PASS' , '1234');
 function __autoload($class){
     require_once( './lib/' . $class . '.php');
 }
+
 $dbh = DBConnection::getInstance();
 
 //setting new path
 $path =  get_include_path() . PS . LIB_PATH . PS . MODELS_PATH;
 set_include_path($path);
 
-
-// //test db
-// $user = new User();
-// $user->name = 'Amr';
-// $user->email = "bondok@elcoach.com";
-// $user->password = md5("1234");
-// $user->room = 23;
-// $user->ext = 343;
-// $user->admin = 0;
-// $user->add();
-
+require_once(VIEWS_PATH . 'login.php');
 
 
 //end buffer and send output
