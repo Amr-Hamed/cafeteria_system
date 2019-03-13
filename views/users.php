@@ -1,7 +1,7 @@
-<?php include 'header.php'; ?>
+<?php include '../templates/header.php'; ?>
 <div class="container-fluid     ">
     <div style="padding: 3%">
-        <h1> Users</h1>
+        <h1 style="text-align: center"> Users</h1>
         <button type="button" class="btn btn-success add-btn" data-toggle="modal" data-target="#exampleModal">Add User</button>
     </div>
 
@@ -131,8 +131,8 @@
                         </div>
 
                         <div class="col-md-6 offset-md-4">
-                            <button type="button" class="btn btn-secondary">Reset</button>
-                            <button type="submit" class="btn btn-primary">Add User</button>
+                            <button type="button" class="btn btn-warning">Reset</button>
+                            <button type="submit" class="btn btn-success">Add User</button>
                         </div>
                 </div>
                 </form>
