@@ -23,9 +23,9 @@ define( "LIB_PATH" , APP_PATH . 'lib' . DS);
 define( "MODELS_PATH" , APP_PATH . 'models' . DS);
 define( "VIEWS_PATH" , APP_PATH . 'views' . DS);
 //DB credentials
-define('DB_HOST' , 'localhost');
+define('DB_HOST' , '127.0.0.1');
 define('DB_NAME' , 'cafeteria_system');
-define('DB_USER' , 'Gom3a');
+define('DB_USER' , 'Mostafa');
 define('DB_PASS' , '123456');
 
 

@@ -1,4 +1,12 @@
-<?php include '../templates/header.php'; ?>
+<?php include '../templates/header.php'; 
+      include "../addProduct.php";?>
+
+
+
+
+
+
+
 <div class="container-fluid     ">
     <div style="padding: 3%">
         <h1 style="text-align: center"> Products</h1>
@@ -100,18 +108,18 @@
                 </div>
                 <div class="modal-body">
 
-                    <form name="my-form" onsubmit="" action="" method="">
+                    <form name="my-form" onsubmit="" action="addProduct.php" method="POST">
                         <div class="form-group row">
                             <label for="product_name" class="col-md-4 col-form-label text-md-right">Product Name</label>
                             <div class="col-md-6">
-                                <input type="text" id="product_name" class="form-control" name="full-name">
+                                <input type="text" id="product_name" class="form-control" name="pName">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="room_number" class="col-md-4 col-form-label text-md-right">Price </label>
                             <div class="col-md-4">
-                                <input type="number" id="room_number" class="form-control">
+                                <input type="number" id="room_number" class="form-control" name="pPrice">
                             </div>
                             <label for="room_number" class="col-md-2 col-form-label text-md-right">EGP </label>
                         </div>
@@ -119,7 +127,7 @@
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">Category</label>
                             <div class="col-md-6">
-                                <input type="dropdown" id="category" list="categories" class="form-control" name="full-name">
+                                <input type="dropdown" id="category" list="categories" class="form-control" name="pCatID">
                                 <datalist id="categories">
                                     <option>food</option>
                                     <option>food</option>
