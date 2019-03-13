@@ -1,11 +1,11 @@
 <?php 
 
-class DBModel{
+Class DBModel{
     public function setAttributes(){
 
         $sqlString = array();
         
-        foreach ($this->tableFields as $field){
+        foreach ($this->dbFields as $field){
             if(is_int($this->$field) || is_double($this->$field)){
                 $sqlString [] = $field . " = " . $this->$field;
             }else{
@@ -34,10 +34,10 @@ class DBModel{
         }
     }
 
-    private function add ()
+    public function add ()
     {
         global $dbh;
-        $sql = "INSERT INTO " . $this->tableName . " SET " . $this->attributes();
+        $sql = "INSERT INTO " . $this->tableName . " SET " . $this->setAttributes();
         $affectedRows = $dbh->exec($sql);
         if ($affectedRows != false) {
             $this->id = $dbh->lastInsertId();
@@ -50,10 +50,11 @@ class DBModel{
     public function update ()
     {
         global $dbh;
-        $sql = "UPDATE " . $this->tableName . " SET " . $this->attributes() .
+        $sql = "UPDATE " . $this->tableName . " SET " . $this->setAttributes() .
                  ' WHERE id = ' . $this->id;
+                 var_dump($sql);
         $affectedRows = $dbh->exec($sql);
-        return $affectedRows != false ? true : false;
+        return $$affectedRows != false ? true : false;
     }
 
     public function delete ()
