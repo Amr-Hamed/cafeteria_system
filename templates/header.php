@@ -28,20 +28,20 @@
             <div>
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="AdminHome.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="products.php">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Users</a>
+                        <a class="nav-link" href="users.php">Users</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manual Order</a>
+                        <a class="nav-link" href="manual.php">Manual Order</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Checks</a>
+                        <a class="nav-link" href="checks.php">Checks</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +59,7 @@
                 <ul class="nav pull-right user-name">
                     <li class="dropdown navbar-text"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, User <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/auth/logout"><i class="icon-off"></i> Logout</a></li>
+                            <li><a href="logout.php"> Logout</a></li>
                         </ul>
                     </li>
                 </ul>
