@@ -14,7 +14,7 @@ Class Orders extends DBModel {
     public $dbFields  = array(
         'user_id',
         'state',
-        'note',
+        'notes',
         'date',
         'amount'
     );
