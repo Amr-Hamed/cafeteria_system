@@ -25,9 +25,9 @@ class DBModel{
             } else {
                 $data = $results->fetchAll($type);
             }
-            if(count($data) == 1) {
-                $data = array_shift($data);
-            }
+            // if(count($data) == 1) {
+            //     $data = array_shift($data);
+            // }
             return $data;
         } else {
             return false;
