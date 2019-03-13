@@ -14,24 +14,8 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <h1 class="modal-header"> Order</h1>
 
             <!-- OrderItems  -->
-
-            <div id="orderItem" class="row product-row" style="margin: auto;">
-                
-                <div class="col-sm-2">Tea</div>
-                <div class="col-sm-1">
-                    <span class="badge badge-light">1</span>
-                </div>
-                <div class="col-sm-2">
-                    <button id="incItemQuantity" type="button" class="btn btn-success">+</button>
-                </div>
-                <div class="col-sm-2">
-                    <button id="decItemQuantity" type="button" class="btn btn-info">-</button>
-                </div>
-                <div id="itemTotalAmount" class="col-sm-2">50 .EGP</div>
-                <div class="col-sm-2">
-                    <button id="removeItem" type="button" class="btn btn-danger">X</button>
-                </div>
-
+            <div id="orderItemContainer">
+           
             </div>
 
             </div>
@@ -51,7 +35,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
                 <label for="room" class="col-md-3 col-form-label text-md-center">Room</label>
                 <div class="col-md-8">
 
-                    <select name="user" style="width: 100%;padding-top:2%;margin-top:2%">
+                    <select name="room" style="width: 100%;padding-top:2%;margin-top:2%">
 
                         <option selected>Select Room</option>
                         <?php if(isset($rooms)) {
@@ -68,7 +52,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <hr>
             <!-- End Of Form -->
             <div class="total-cost">
-                <h2> Total = 150 .EGP </h2>
+                <h2 id="orderTotalAmount"> Total = <span>0<span> </h2>
             </div>
             <!-- Form Button -->
             <div class="order-btn">
@@ -108,11 +92,11 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
                     <div class="card col-sm-3 product-card" style="float:left">
                         <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo "data:image/jpeg;base64," . base64_encode($product['product_picture']); ?>" alt="Card image cap" />
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $product['product_name']; ?></h5>
-                            <p class="card-text"><?php echo $product['price']; ?> .EGP</p>
-                            <input type="hidden" value="<?php echo $product['id'] ?>" />
+                            <h5 id="name" class="card-title"><?php echo $product['product_name']; ?></h5>
+                            <p id="price" class="card-text"><?php echo $product['price']; ?><span> .EGP</span></p>
+                            <input id="pid" type="hidden" value="<?php echo $product['id'] ?>" />
                             <div class="order-btn">
-                                <input type="button" value="Order" class="btn btn-info" />
+                                <input type="button" value="Order" class="orderTheItem btn btn-info" />
                             </div>
                         </div>
                     </div>
@@ -123,7 +107,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
         </div>
     </div>
 </div>
-
+<script src="../js/plugin.js" ></script>
 </body>
 
 </html> 
