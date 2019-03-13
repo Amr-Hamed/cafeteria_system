@@ -1,25 +1,57 @@
-<?php include '../templates/header.php'; ?>
-<div class="container-fluid     ">
+<?php require_once('../config.php');
+require_once(TEMPLATE_PATH . 'header.php');
+
+?>
+<div class="container-fluid">
     <div style="padding: 3%">
         <h1 style="text-align: center">Orders</h1>
     </div>
+    <div id="orders">
+        <?php 
+        $orders = DBModel::read("SELECT orders.*, users.name, users.ext, users.room FROM orders, users WHERE users.id = orders.user_id ORDER BY orders.state DESC");
+        $inProcessOrders = Products::read("SELECT o.* FROM orders o WHERE o.state = 'Processing'");
+        $inDeliveryOrders = Products::read("SELECT o.* FROM orders o WHERE o.state = 'Delivery'");
+var_dump($inProcessOrders);
+        ?>
+        <!-- Users Table  -->
+        <?php if (isset($orders)) {
+            foreach ($orders as $order) {
+                if ($order['state'] == "Processing" || $order['state'] == "Delivery") { ?>
+        <div id="scores" style="width: 80%; margin: auto">
+            <table class="table table-striped table-success ">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Room</th>
+                        <th scope="col">Ext.</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="load">
+                    <tr>
+                        <td scope="row" class="Date"><?php echo $order['date']; ?></td>
+                        <td class="Date"><?php echo $order['name']; ?></td>
+                        <td class="Date"><?php echo $order['room']; ?></td>
+                        <td class="Date"><?php echo $order['ext']; ?></td>
+                        <?php if ($order['state'] == "Delivery") { ?>
+                        <td class="Date btn-success" id="deliver" style="text-align:center"><?php echo $order['state']; ?></td>
+                    
+                    <?php 
+                } else if ($order['state'] == "Processing") { ?>
+                    <td class="Date btn-danger" id="processing" style="text-align:center"><?php echo $order['state']; ?></td>
+                    
+                    <?php }?>
+                    </tr>
+                    <?php
+             } 
+        }
+    } else { ?>
+                    <h1>There Is No Orders Yet </h1>
+                    <?php 
+                } ?>
 
-    <!-- Users Table  -->
-
-    <div style="width: 80%; margin: auto">
-        <table class="table table-striped table-success ">
-            <thead>
-                <tr>
-                    <th scope="col">Order Date</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Room</th>
-                    <th scope="col">Ext.</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row" class="Date">15-3-2019 <span>10:30 AM</span> </th>
+                    <!-- 
                     <td class="Date">Hesham</td>
                     <td class="Date">110</td>
                     <td class="Date">876</td>
@@ -68,8 +100,40 @@
     </th>
     </tr>
     </tbody>
-    </table>
-</div>
-</body>
+<<<<<<< HEAD
+    </table> -->
+        </div>
 
-</html> 
+        <script>
+            $(document).ready(function() {
+                var deliver = setInterval(function() {
+                    $('#orders').load('AdminHome.php #orders');
+                }, 3000)
+                $.ajaxSetup({
+                    cache: false
+                });
+            });
+        </script>
+        <footer>
+            <script>
+                setInterval(function() {
+                    <?php 
+                    foreach ($inProcessOrders as $order){
+                        $o = new Orders();
+                    $o->id = $order['id'];
+                    $o->user_id = $order['user_id'];
+                    $o->date = $order['date'];
+                    $o->note = $order['note'];  
+                    $o->amount = $order['amount'];
+                    $o->state = 'Delivery';
+
+                    
+                    $o.update();
+                    }
+                    ?>
+                }, 30000)
+            </script>
+        </footer>
+        </body>
+
+        </html> 
