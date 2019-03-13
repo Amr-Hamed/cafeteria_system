@@ -1,9 +1,9 @@
 <?php require_once('../config.php'); 
 require_once(TEMPLATE_PATH . 'header.php');
 
-$products = Products::read("SELECT p.* FROM products p WHERE p.availability = 1",null ,'Products');
-$users = Users::read("SELECT u.* FROM users u WHERE u.admin = 0",null ,'Users');
-$rooms = Users::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",null ,'Users');
+$products = DBModel::read("SELECT p.* FROM products p WHERE p.availability = 1",null);
+$users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
+$rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",null);
 
 ?>
 
@@ -51,7 +51,7 @@ $rooms = Users::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",nul
                 <label for="room" class="col-md-3 col-form-label text-md-center">Room</label>
                 <div class="col-md-8">
 
-                    <select name="user" style="width: 100%;padding-top:2%;margin-top:2%">
+                    <select name="room" style="width: 100%;padding-top:2%;margin-top:2%">
                         <option selected>Select Room</option>
                         <?php if(isset($rooms)) {
                             foreach ($rooms as $room) {?>
