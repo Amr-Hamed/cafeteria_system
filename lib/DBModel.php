@@ -1,7 +1,6 @@
 <?php 
 
 class DBModel{
-
     public function setAttributes(){
 
         $sqlString = array();

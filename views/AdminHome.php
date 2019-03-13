@@ -100,6 +100,7 @@ var_dump($inProcessOrders);
     </th>
     </tr>
     </tbody>
+<<<<<<< HEAD
     </table> -->
         </div>
 
