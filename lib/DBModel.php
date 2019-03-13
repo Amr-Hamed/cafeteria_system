@@ -18,6 +18,7 @@ class DBModel{
         global $dbh;
         $results = $dbh->query($sql);
         if($results) {
+            if(null !== $class && $type == PDO::FETCH_CLASS) {
                 $data = $results->fetchAll($type, $class);
             } else {
                 $data = $results->fetchAll($type);
