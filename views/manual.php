@@ -12,7 +12,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
 <div class="container-fluid">
     <div class="col-sm-4" style="float:left">
     <div class="row">
-        <form>
+        <form method="get">
             <h1 class="modal-header"> Order</h1>
 
             <!-- OrderItems  -->
@@ -58,9 +58,9 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             </div>
             <!-- Form Button -->
             <div class="order-btn">
-                <input type="submit" value="Confirm" class="btn btn-success">
+                <input type="submit" value="Confirm" name="confirm" class="btn btn-success">
             </div>
-        </form>
+    
 
         <!-- menu -->
         </div>
@@ -85,14 +85,14 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
                 </div>
             </div>
             <hr />
-
+            </form>
 
             <!-- products -->
             <div class="container" style="clear:both">
                 <?php if(isset($products)) {
                     foreach ($products as $product) {?>
                     <div class="card col-sm-3 product-card" style="float:left">
-                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo $product['product_picture']; ?>" alt="Card image cap" />
+                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo "data:image/jpeg;base64," . base64_encode($product['product_picture']);?>" alt="Card image cap" />
                         <div class="card-body">
                             <h5 id="name" class="card-title"><?php echo $product['product_name']; ?></h5>
                             <p id="price" class="card-text"><?php echo $product['price']; ?><span> .EGP</span></p>

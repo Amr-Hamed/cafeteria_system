@@ -20,12 +20,14 @@ class DBModel{
         if($results) {
             if(null !== $class && $type == PDO::FETCH_CLASS) {
                 $data = $results->fetchAll($type, $class);
+
+                if(count($data) == 1) {
+                    $data = array_shift($data);
+                }
             } else {
                 $data = $results->fetchAll($type);
             }
-            if(count($data) == 1) {
-                $data = array_shift($data);
-            }
+            
             return $data;
         } else {
             return false;
