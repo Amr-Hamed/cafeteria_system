@@ -1,4 +1,32 @@
-<?php  ?>
+<?php
+
+if (isset($_POST['logIn'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+  
+    $result = DBModel::read("SELECT u.* FROM users u WHERE u.email ='". $email ."' AND u.password =$password");
+   
+    if ($result) {
+        
+        session_start();
+        $_SESSION['user_id'] = $result['id'];
+        
+        if($result['admin'] == 1){
+       
+            header("Location: /views/AdminHome.php");
+        
+        }
+        else {
+
+            header("Location: /views/userHome.php");
+        
+        }
+    }
+    else {
+        echo 'Email or Password is invalid ';
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -45,26 +73,3 @@
 </body>
 </html>
 
-<?php
-require_once('/opt/lampp/htdocs/cafeteria_system/models/Users.php');
-if (isset($_POST['logIn'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $userName = users::read("SELECT u.* FROM users u WHERE email = $email AND password = $password");
-    var_dump($userName);
-    if ($userName) {
-        echo "valid username";
-        if($userName['admin'] == 1){
-        // header('Location: /cafeteria_system/views/AdminHome.php');
-        echo "true";
-        }
-        elseif ($userName['admin'] == 0) {
-        // header('Location: /cafeteria_system/views/userHome.php');
-        echo "false";
-        }
-    }
-    else {
-        echo 'Email or Password is invalid ';
-    }
-}
-?>

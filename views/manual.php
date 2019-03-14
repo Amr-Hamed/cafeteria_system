@@ -1,5 +1,7 @@
 <?php require_once('../config.php'); 
 require_once(TEMPLATE_PATH . 'header.php');
+session_start();
+$user_id = $_SESSION['user_id'];
 
 $products = DBModel::read("SELECT p.* FROM products p WHERE p.availability = 1",null);
 $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
@@ -90,7 +92,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
                 <?php if(isset($products)) {
                     foreach ($products as $product) {?>
                     <div class="card col-sm-3 product-card" style="float:left">
-                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo "data:image/jpeg;base64," . base64_encode($product['product_picture']); ?>" alt="Card image cap" />
+                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo $product['product_picture']; ?>" alt="Card image cap" />
                         <div class="card-body">
                             <h5 id="name" class="card-title"><?php echo $product['product_name']; ?></h5>
                             <p id="price" class="card-text"><?php echo $product['price']; ?><span> .EGP</span></p>

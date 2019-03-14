@@ -1,4 +1,5 @@
-<?php require '../templates/userHeader.php' ?>
+<?php  require_once('../config.php'); 
+require_once(TEMPLATE_PATH . 'userHeader.php'); ?>
 
 <div class="container-fluid">
     <div class="row">
