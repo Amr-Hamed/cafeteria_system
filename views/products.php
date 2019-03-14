@@ -75,8 +75,8 @@ $products = DBModel::read("SELECT * FROM products",null);
                              
                                
                                
-                               <a class="btn btn-info" href="http://localhost/cafeteria/cafeteria_system/views/editproduct.php?id=<?php echo $product['id']?>">Edit</a>
-                               <a class="btn btn-info" href="http://localhost/cafeteria/cafeteria_system/views/products.php?id=<?php echo $product['id']?>">Delete</a>
+                               <a class="btn btn-info" href="/views/editproduct.php?id=<?php echo $product['id']?>">Edit</a>
+                               <a class="btn btn-info" href="/views/products.php?id=<?php echo $product['id']?>">Delete</a>
                                 
                             </td>
                         </tr>

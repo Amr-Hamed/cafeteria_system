@@ -9,9 +9,9 @@ if (isset($_POST['logIn'])) {
     if ($result) {
         
         session_start();
-        $_SESSION['user_id'] = $result['id'];
+        $_SESSION['user_id'] = $result[0]['id'];
         
-        if($result['admin'] == 1){
+        if($result[0]['admin'] == 1){
        
             header("Location: /views/AdminHome.php");
         

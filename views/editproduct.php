@@ -6,7 +6,7 @@ $categories = DBModel::read("SELECT * FROM category",null);
 if(isset($_GET["id"])){
     $id=$_GET["id"];
     $product =  DBModel::read("SELECT * FROM products WHERE id= $id",PDO::FETCH_CLASS,'Products');
-     echo $product->price;
+     
     $cat_id=$product->category_id;
 }
 
@@ -17,13 +17,13 @@ if(isset($_POST["pSubmit"]) && isset($_POST["pName"]) && isset($_POST["pPrice"])
     $newProduct->price=$_POST['pPrice'];
     $newProduct->category_id=$_POST['pCatID'];
 
-    if(isset($_FILES['product_pics']['tmp_name'])){
+    if(($_FILES['product_pics']['tmp_name'])!=null){
 
         $im='data:image/jpeg;base64,'.base64_encode(file_get_contents($_FILES['product_pics']['tmp_name']));
         $newProduct->product_picture=$im;
     }
     else{
-       
+        //var_dump($product->product_picture);
         $newProduct->product_picture=$product->product_picture;
     }
     
