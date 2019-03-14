@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class DBModel{
     public function attributes(){
@@ -14,7 +14,6 @@ class DBModel{
         }
         return implode( " , " , $sqlString );
     }
-    
     public static function read($sql, $type = PDO::FETCH_ASSOC, $class = null)
     {
         global $dbh;
@@ -22,10 +21,12 @@ class DBModel{
         if($results) {
             if(null !== $class && $type == PDO::FETCH_CLASS) {
                 $data = $results->fetchAll($type, $class);
+                if(count($data) == 1) {
+                    $data = array_shift($data);
+                }
             } else {
                 $data = $results->fetchAll($type);
-            }
-          
+            }          
             return $data;
         } else {
             return false;
@@ -47,7 +48,7 @@ class DBModel{
         return true;
     }
 
-    private function update ()
+    public function update ()
     {
         global $dbh;
         $sql = "UPDATE " . $this->tableName . " SET " . $this->attributes() .
@@ -64,7 +65,6 @@ class DBModel{
        
         return $affectedRows != false ? true : false;
     }
-    
     public function save()
     {
         return ($this->id === null) ? $this->add() : $this->update();

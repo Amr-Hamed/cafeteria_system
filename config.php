@@ -1,8 +1,8 @@
-<?php 
+<?php
 //setting the output buffer
 ob_start();
 
-//error handling 
+//error handling
 ini_set('display_errors' , 1);
 error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 

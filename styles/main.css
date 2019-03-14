@@ -1,5 +1,8 @@
 body{
   height: 100%;
+  width: 100%;
+  background-image: url("back.png");
+  background-size: cover;
 }
 .login{
   align-items: center;
@@ -48,6 +51,7 @@ body{
 .bumpy{
   text-align: center;
   padding-top: 4%;
+  font-size: 400%;
 }
 .bumpy-char {
   position: relative;
@@ -120,4 +124,10 @@ margin: 1%;
 }
 .labelDate{
   font-size: 150%;
+}
+.addProduct{
+  padding-top: 3%;
+}
+.addPics{
+  float: right;
 }

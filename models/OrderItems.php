@@ -7,7 +7,7 @@ Class OrderItems extends DBModel {
     public $quantity;
     public $product_price;
     
-    public $tableName = 'order_items';
+    public $tableName = 'order_product';
 
     public $dbFields  = array(
         'order_id',
