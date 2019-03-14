@@ -1,9 +1,10 @@
 <?php
 
 class DBModel{
-    public function setAttributes(){
+    public function attributes(){
 
         $sqlString = array();
+        
         foreach ($this->dbFields as $field){
             if(is_int($this->$field) || is_double($this->$field)){
                 $sqlString [] = $field . " = " . $this->$field;
@@ -20,12 +21,12 @@ class DBModel{
         if($results) {
             if(null !== $class && $type == PDO::FETCH_CLASS) {
                 $data = $results->fetchAll($type, $class);
+                if(count($data) == 1) {
+                    $data = array_shift($data);
+                }
             } else {
                 $data = $results->fetchAll($type);
-            }
-            if(count($data) == 1) {
-                $data = array_shift($data);
-            }
+            }          
             return $data;
         } else {
             return false;
@@ -35,8 +36,10 @@ class DBModel{
     private function add ()
     {
         global $dbh;
-        $sql = "INSERT INTO " . $this->tableName . " SET " . $this->setAttributes();
+        $sql = "INSERT INTO " . $this->tableName . " SET " . $this->attributes();
+        
         $affectedRows = $dbh->exec($sql);
+      
         if ($affectedRows != false) {
             $this->id = $dbh->lastInsertId();
         } else {
@@ -48,7 +51,7 @@ class DBModel{
     public function update ()
     {
         global $dbh;
-        $sql = "UPDATE " . $this->tableName . " SET " . $this->setAttributes() .
+        $sql = "UPDATE " . $this->tableName . " SET " . $this->attributes() .
                  ' WHERE id = ' . $this->id;
         $affectedRows = $dbh->exec($sql);
         return $affectedRows != false ? true : false;
@@ -59,6 +62,7 @@ class DBModel{
         global $dbh;
         $sql = "DELETE FROM " . $this->tableName . ' WHERE id = ' . $this->id;
         $affectedRows = $dbh->exec($sql);
+       
         return $affectedRows != false ? true : false;
     }
     public function save()

@@ -5,10 +5,10 @@ Class Categories extends DBModel {
     public $id;
     public $name;
     
-    public $tableName = 'categories';
+    public $tableName = 'category';
 
     public $dbFields  = array(
-        'name'
+        'category_name'
     );
 }
 
