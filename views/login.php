@@ -3,23 +3,23 @@
 if (isset($_POST['logIn'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-  
+
     $result = DBModel::read("SELECT u.* FROM users u WHERE u.email ='". $email ."' AND u.password =$password");
-   
+
     if ($result) {
-        
+
         session_start();
         $_SESSION['user_id'] = $result['id'];
-        
+
         if($result['admin'] == 1){
-       
+
             header("Location: /views/AdminHome.php");
-        
+
         }
         else {
 
             header("Location: /views/userHome.php");
-        
+
         }
     }
     else {
@@ -30,6 +30,7 @@ if (isset($_POST['logIn'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,36 +41,39 @@ if (isset($_POST['logIn'])) {
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/custom.sass">
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/_variables.scss">
-     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- jQuery library -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Popper JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+
+    <!-- Latest compiled JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
 </head>
+
 <body>
     <div>
-        <h1 class="bumpy" >Welcome! To ITI Cafeteria</h1>
+        <h1 class="bumpy">Welcome! To ITI Cafeteria</h1>
     </div>
-<div class="col-md-4 col-md-offset-4 login">
-    <form class="form-signin login-form" method="POST">
-        <div class="text-center mb-4">
-		<h1 class="h3 mb-3 font-weight-normal">Please LogIn</h1>
-        </div>
-        <div class="form-label-group login-label">
-        <input class="form-control" type="email" name="email" placeholder="Email-Address">
-        </div>
-        <div class="form-label-group login-label">
-        <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="logIn">Log In</button>
-    </form>
+    <div class="col-md-4 col-md-offset-4 login">
+        <form class="form-signin login-form" method="POST">
+            <div class="text-center mb-4">
+                <h1 class="h3 mb-3 font-weight-normal">Please LogIn</h1>
+            </div>
+            <div class="form-label-group login-label">
+                <input class="form-control" type="email" name="email" placeholder="Email-Address">
+            </div>
+            <div class="form-label-group login-label">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="logIn">Log In</button>
+        </form>
     </div>
 </body>
-</html>
 
+</html>
