@@ -1,10 +1,9 @@
-<?php 
+<?php
 
-Class DBModel{
+class DBModel{
     public function setAttributes(){
 
         $sqlString = array();
-        
         foreach ($this->dbFields as $field){
             if(is_int($this->$field) || is_double($this->$field)){
                 $sqlString [] = $field . " = " . $this->$field;
@@ -14,7 +13,6 @@ Class DBModel{
         }
         return implode( " , " , $sqlString );
     }
-    
     public static function read($sql, $type = PDO::FETCH_ASSOC, $class = null)
     {
         global $dbh;
@@ -34,7 +32,7 @@ Class DBModel{
         }
     }
 
-    public function add ()
+    private function add ()
     {
         global $dbh;
         $sql = "INSERT INTO " . $this->tableName . " SET " . $this->setAttributes();
@@ -52,9 +50,8 @@ Class DBModel{
         global $dbh;
         $sql = "UPDATE " . $this->tableName . " SET " . $this->setAttributes() .
                  ' WHERE id = ' . $this->id;
-                 var_dump($sql);
         $affectedRows = $dbh->exec($sql);
-        return $$affectedRows != false ? true : false;
+        return $affectedRows != false ? true : false;
     }
 
     public function delete ()
@@ -64,7 +61,6 @@ Class DBModel{
         $affectedRows = $dbh->exec($sql);
         return $affectedRows != false ? true : false;
     }
-    
     public function save()
     {
         return ($this->id === null) ? $this->add() : $this->update();
