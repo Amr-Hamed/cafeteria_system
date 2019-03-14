@@ -55,6 +55,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <!-- End Of Form -->
             <div class="total-cost">
                 <h2 id="orderTotalAmount"> Total = <span>0<span> </h2>
+                <input id="total_amount" type="hidden" name="total_amount" value="0"/>
             </div>
             <!-- Form Button -->
             <div class="order-btn">
