@@ -37,10 +37,17 @@ $categories = DBModel::read("SELECT * FROM category",null);
                                             <option value="<?php echo $category['id']; ?>"><?php echo $category['category_name'];?></option>
                                         <?php }}?>
                                     </select>
+                                </div>
+                                <!-- add category start  -->
 
+                                <div>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addModal">Add Category</button>
+                                </div>
+                                <!-- add category END  -->
                                 </div>
                             </div>
-                    </div>
+
+                   
 
                     <div class="form-group row">
                         <label for="product_pics" class="col-md-4 col-form-label text-md-right">Product Picture
@@ -52,6 +59,7 @@ $categories = DBModel::read("SELECT * FROM category",null);
                     <div class="col-md-6 offset-md-4">
                         <button type="button" class="btn btn-warning">Reset</button>
                         <button type="submit" class="btn btn-success" name="pSubmit">Add Product</button>
+                        <button type="" class="btn btn-secondary">< Back</button>
                     </div>
                 </div>
                 </form>
