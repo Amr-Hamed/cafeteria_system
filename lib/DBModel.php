@@ -1,11 +1,11 @@
 <?php 
 
 class DBModel{
-    public function setAttributes(){
+    public function attributes(){
 
         $sqlString = array();
         
-        foreach ($this->tableFields as $field){
+        foreach ($this->dbFields as $field){
             if(is_int($this->$field) || is_double($this->$field)){
                 $sqlString [] = $field . " = " . $this->$field;
             }else{
@@ -25,9 +25,7 @@ class DBModel{
             } else {
                 $data = $results->fetchAll($type);
             }
-            // if(count($data) == 1) {
-            //     $data = array_shift($data);
-            // }
+          
             return $data;
         } else {
             return false;
@@ -38,7 +36,9 @@ class DBModel{
     {
         global $dbh;
         $sql = "INSERT INTO " . $this->tableName . " SET " . $this->attributes();
+        
         $affectedRows = $dbh->exec($sql);
+      
         if ($affectedRows != false) {
             $this->id = $dbh->lastInsertId();
         } else {
@@ -61,6 +61,7 @@ class DBModel{
         global $dbh;
         $sql = "DELETE FROM " . $this->tableName . ' WHERE id = ' . $this->id;
         $affectedRows = $dbh->exec($sql);
+       
         return $affectedRows != false ? true : false;
     }
     
