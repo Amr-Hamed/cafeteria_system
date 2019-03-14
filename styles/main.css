@@ -125,3 +125,9 @@ margin: 1%;
 .labelDate{
   font-size: 150%;
 }
+.addProduct{
+  padding-top: 3%;
+}
+.addPics{
+  float: right;
+}
