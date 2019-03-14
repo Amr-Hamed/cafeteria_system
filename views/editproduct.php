@@ -6,12 +6,8 @@ $categories = DBModel::read("SELECT * FROM category",null);
 if(isset($_GET["id"])){
     $id=$_GET["id"];
     $product =  DBModel::read("SELECT * FROM products WHERE id= $id",PDO::FETCH_CLASS,'Products');
-    // var_dump($product);
      echo $product->price;
     $cat_id=$product->category_id;
-
-    //$pCategory=DBModel::read("SELECT * FROM category where id=$cat_id",PDO::FETCH_CLASS,'Categories');
-
 }
 
 if(isset($_POST["pSubmit"]) && isset($_POST["pName"]) && isset($_POST["pPrice"]) && isset($_POST["pCatID"]) ){
@@ -89,12 +85,9 @@ if(isset($_POST["pSubmit"]) && isset($_POST["pName"]) && isset($_POST["pPrice"])
                 </div>
                 </form>
 
-
-
 </div>
 </div>
 </div>
-
 </body>
 
 </html> 
