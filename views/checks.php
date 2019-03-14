@@ -80,16 +80,19 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
         <tbody>
         <?php 
         $submit = $_POST['submit'];
-        $user = $_POST['user'];
-        // $user_id = DBModel::read("SELECT u.id FROM users u WHERE u.name = $user ",null);
+        // $user = $_POST['user'];
+        $user = "amr";
+        $user_id = DBModel::read("SELECT u.id FROM users u WHERE u.name = $user ",null);
+        echo $user_id[0]['id'];
+        echo gettype($user_id);
         // $amount = DBModel::read("SELECT SUM(o.amount) FROM orders o WHERE u.user_id = $user_id",null);
         // echo $user_id[0] . " i" . $amount['amount'];
-        echo gettype($amount) . " echo " . gettype($user_id);
+        // echo gettype($amount) . " echo " . gettype($user_id);
         // echo $user;
-        foreach ($user_id as $elment)
-        {
-            echo $elment['id'];
-        }
+        // foreach ($user_id as $elment)
+        // {
+        //     echo $elment['id'];
+        // }
         if(isset($submit)){
             if(isset($user)){ 
                 echo "<tr> 
