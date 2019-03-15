@@ -1,5 +1,5 @@
 <?php
-
+require_once('../config.php');
 if (isset($_POST['logIn'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -73,7 +73,7 @@ if (isset($_POST['logIn'])) {
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="logIn">Log In</button>
         </form>
-        <a href="../views/forgetpassword.php">Forget Password?</a>
+        <a href="./forgetpassword.php">Forget Password?</a>
     </div>
 </body>
 

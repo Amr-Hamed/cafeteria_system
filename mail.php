@@ -28,11 +28,15 @@ try {
    $mail->Subject = 'ITI Cafeteria Password';
 
    /* Set the mail message body. */
-   $mail->Body = "This is your password for ITI Cafeteria :".$result[0]['password'];
+//    $mail->Body = "This is your password for ITI Cafeteria :".$result[0]['password'];
+    $mail->Body = "
+        To Reset Your Password, Please Follow The Following Link :
+        http://localhost:8080/cafeteria_system/views/resetpassword.php
+    ";
 
    /* Finally send the mail. */
    $mail->send();
-   header("Location: /cafeteria_system/views/login.php");
+//    header("Location: /cafeteria_system/views/login.php");
 }
 catch (Exception $e)
 {
