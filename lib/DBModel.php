@@ -18,8 +18,8 @@ class DBModel{
     {
         global $dbh;
         $results = $dbh->query($sql);
-        if($results) {
-            if(null !== $class && $type == PDO::FETCH_CLASS) {
+        if ($results) {
+            if (null !== $class && $type == PDO::FETCH_CLASS) {
                 $data = $results->fetchAll($type, $class);
                 if(count($data) == 1) {
                     $data = array_shift($data);
@@ -33,7 +33,7 @@ class DBModel{
         }
     }
 
-    private function add ()
+    private function add()
     {
         global $dbh;
         $sql = "INSERT INTO ".$this->tableName." SET ".$this->attributes();
@@ -48,7 +48,7 @@ class DBModel{
         return $this->id;
     }
 
-    public function update ()
+    public function update()
     {
         global $dbh;
         $sql = "UPDATE " . $this->tableName." SET ".$this->attributes() .
@@ -57,7 +57,7 @@ class DBModel{
         return $affectedRows != false ? true : false;
     }
 
-    public function delete ()
+    public function delete()
     {
         global $dbh;
         $sql = "DELETE FROM " . $this->tableName . ' WHERE id ='.$this->id;
@@ -65,11 +65,25 @@ class DBModel{
        
         return $affectedRows != false ? true : false;
     }
+    public function delOrder()
+    {
+        global $dbh;
+        $sql = "DELETE FROM " . $this->tableName . ' WHERE order_id = ' . $this->order_id;
+        $affectedRows = $dbh->exec($sql);
+        return $affectedRows != false ? true : false;
+    }
+
+    public function delFromUser()
+    {
+        global $dbh;
+        $sql = "DELETE FROM " . $this->tableName . ' WHERE id = ' . $this->id . ' AND user_id = ' . $this->user_id;
+        echo $sql;
+        $affectedRows = $dbh->exec($sql);
+        return $affectedRows != false ? true : false;
+    }
     public function save()
     {
         return ($this->id === null) ? $this->add() : $this->update();
     }
-
 }
-
-?>
+ 
