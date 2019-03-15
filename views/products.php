@@ -24,6 +24,15 @@ if(isset($_POST["pSubmit"]) && isset($_POST["pName"]) && isset($_POST["pPrice"])
      header('Location:products.php');
 }
 
+// Change availability
+if(isset($_POST["availability"])){
+    $av=(int)$_POST["availability"][0];
+    $pID=(int)substr($_POST["availability"],1);
+    $p=  DBModel::read("SELECT * FROM products WHERE id= $pID",PDO::FETCH_CLASS,'Products');
+    $p->availability=$av;
+    $p->save();
+}
+
 $categories = DBModel::read("SELECT * FROM category",null);
 $products = DBModel::read("SELECT * FROM products",null);
 ?>
@@ -86,32 +95,35 @@ $products = DBModel::read("SELECT * FROM products",null);
 
                 <?php if(isset($products)) {
                     foreach ($products as $product) {?>
-                <tr>
-                    <th scope="row"><?php echo $product['product_name']?></th>
-                    <td><?php echo $product['price']?></td>
-                    <td>
-                        <div class="product_inset">
-
-                            <img class="card-img-top buy-pic" width="150" height="150"
-                                src=<?php echo $product['product_picture']; ?> alt="Card image cap" />
-                        </div>
-                    </td>
-                    <td>
-
-                        <div class="btn">
-                            <input id=<?php echo "availableBtn".$product['id']?> type="button"
-                                class="btn btn-secondary dropdown-toggle" value="Available" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" />
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" value="Available">Available</a>
-                                <a class="dropdown-item" value="Unvailable">Unvailable</a>
-                            </div>
-
-                            <a class="btn btn-info"
-                                href="/views/editproduct.php?id=<?php echo $product['id']?>">Edit</a>
-                            <a class="btn btn-info" href="/views/products.php?id=<?php echo $product['id']?>">Delete</a>
-                    </td>
-                </tr>
+                        <tr>
+                            <th scope="row"><?php echo $product['product_name']?></th>
+                            <td><?php echo $product['price']?></td>
+                            <td>
+                                <div class="product_inset">
+                                
+                                <img class="card-img-top buy-pic" width="150" height="150" src=<?php echo $product['product_picture']; ?>  alt="Card image cap" />
+                                    <!-- <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"> -->
+                                    
+                                </div>
+                            </td>
+                            <td>
+                                <!--  -->
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <form action="" method="POST">
+                                        <select id="av" list="products" class="form-control" name="availability" style="width:40%" onchange="this.form.submit()" required >
+                                                <option <?php if($product['availability']==1) echo "selected";?> value="1<?php echo $product['id'];?>">Available</option>
+                                                <option <?php if($product['availability']==0) echo "selected";?> value="0<?php echo $product['id'];?>">Not Available</option>
+                                        </select>
+                                    </form>
+                                </div>
+                                <a class="btn btn-info" href="/views/editproduct.php?id=<?php echo $product['id']?>">Edit</a>
+                                <a class="btn btn-info" href="/views/products.php?id=<?php echo $product['id']?>">Delete</a>
+                                
+                            </div> 
+                            </td>
+                        </tr>
+                                         
                 <?php }}?>
             </tbody>
         </table>

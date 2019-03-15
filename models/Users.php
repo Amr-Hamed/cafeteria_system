@@ -9,7 +9,7 @@ Class Users extends DBModel {
     public $room;
     public $ext;
     public $picture;
-    public $admin;
+    public $admin=0;
 
     public $tableName = 'users';
 
