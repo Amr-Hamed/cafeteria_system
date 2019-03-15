@@ -25,8 +25,8 @@ define( "VIEWS_PATH" , APP_PATH . 'views' . DS);
 //DB credentials
 define('DB_HOST' , '127.0.0.1');
 define('DB_NAME' , 'cafeteria_system');
-define('DB_USER' , 'Gom3a');
-define('DB_PASS' , '123456');
+define('DB_USER' , 'root');
+define('DB_PASS' , '');
 
 //setting new path
 $path =  get_include_path() . PS . LIB_PATH . PS . MODELS_PATH;
