@@ -1,7 +1,5 @@
 <?php
 
-
-
 // setting the output buffer
 ob_start();
 
