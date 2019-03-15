@@ -6,7 +6,7 @@ Class Products extends DBModel {
     public $product_name;
     public $price;
     public $category_id;
-    public $availability;
+    public $availability=1;
     public $product_picture;
 
     public $tableName = 'products';
