@@ -9,6 +9,7 @@ $(document).ready(function(){
     let count = 0;
     $(".orderTheItem").click(function(){
         i++;
+        let orderButton = $(this);
         let name = $(this).parent().parent().find("#name").text();
         let price = $(this).parent().parent().find("#price").text();
         let pid = $(this).parent().parent().find("#pid").val();
@@ -88,7 +89,8 @@ $(document).ready(function(){
         totalAmount.val(parseFloat(orderTotalAmount.text()));
         console.log(parseFloat(orderTotalAmount.html()));
         $(this).parent().parent().remove();
-    
+        orderButton.css('pointer-events','all');
+        orderButton.css('opacity','1');
     });
     
     });

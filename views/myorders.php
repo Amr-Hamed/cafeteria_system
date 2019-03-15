@@ -1,6 +1,6 @@
 <?php require_once('../config.php');
 require_once(TEMPLATE_PATH . 'userHeader.php');
-session_start();
+
 $user_id = $_SESSION['user_id'];
 
 $userOrders = array();

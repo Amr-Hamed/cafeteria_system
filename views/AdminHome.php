@@ -1,6 +1,6 @@
 <?php require_once('../config.php');
 require_once(TEMPLATE_PATH . 'header.php');
-session_start();
+
 $admin = $_SESSION['admin'];
 ?>
 <div class="container-fluid">
