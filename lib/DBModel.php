@@ -37,15 +37,15 @@ class DBModel{
     {
         global $dbh;
         $sql = "INSERT INTO " . $this->tableName . " SET " . $this->attributes();
-        
+        echo $sql;
         $affectedRows = $dbh->exec($sql);
-      
+        
         if ($affectedRows != false) {
             $this->id = $dbh->lastInsertId();
         } else {
             return false;
         }
-        return true;
+        return $this->id;
     }
 
     public function update ()

@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     let orderTotalAmount = $("#orderTotalAmount").children("span");
     let totalAmount = $("#total_amount");
+    let itemCount = $("#item_count");
 
     console.log(orderTotalAmount);
     let i = 0;
@@ -9,11 +10,14 @@ $(document).ready(function(){
         i++;
         let name = $(this).parent().parent().find("#name").text();
         let price = $(this).parent().parent().find("#price").text();
-        let pid = $(this).parent().parent().find("#pid").text();
+        let pid = $(this).parent().parent().find("#pid").val();
+        let itemPrice = parseFloat(price);
+        console.log("PID ",pid);
         $(this).css('pointer-events','none');
         $(this).css('opacity','0.5');
         orderTotalAmount.html(parseFloat(orderTotalAmount.text()) + parseFloat(price));
         totalAmount.val(parseFloat(orderTotalAmount.text()));
+        itemCount.val(i);
         
      $("#orderItemContainer").append(`
      <div id="orderItem${i}" class="row product-row" style="margin: auto;">
@@ -29,7 +33,8 @@ $(document).ready(function(){
      <div class="col-sm-2">
          <button type="button" class="decItemQuantity btn btn-info">-</button>
      </div>
-     <div class="col-sm-2 itemTotalAmount" name="product_price${i}" >${price} </div>
+     <div class="col-sm-2 itemTotalAmount" >${price} </div>
+     <input type="hidden" class="item_total_amount" name="item_total_amount${i}" value="${itemPrice}" />
      <div class="col-sm-2">
          <button type="button" class="removeItem btn btn-danger">X</button>
      </div>
@@ -42,15 +47,16 @@ $(document).ready(function(){
         let itemTotalAmount = $(this).parent().parent().find(".itemTotalAmount");
         let itemQuantity = $(this).parent().parent().find(".itemQuantity");
         let item_quantity = $(this).parent().parent().find(".item_quantity");
-
+        let item_total_amount = $(this).parent().parent().find(".item_total_amount");
     
         if(parseFloat(itemQuantity.text()) !== 5){
             itemQuantity.html(parseFloat(itemQuantity.text()) + 1);
             itemTotalAmount.html(parseFloat(itemTotalAmount.text()) + parseFloat(price));
+            item_total_amount.val(parseFloat(itemTotalAmount.text()));
             itemTotalAmount.append(" EGP");
             orderTotalAmount.html(parseFloat(orderTotalAmount.text()) + parseFloat(price));
             totalAmount.val(parseFloat(orderTotalAmount.text()));
-            item_quantity.val(parseFloat(itemTotalAmount.text()));
+            item_quantity.val(parseFloat(itemQuantity.text()));
     
         }
         
@@ -64,10 +70,11 @@ $(document).ready(function(){
     if(parseFloat(itemQuantity.text()) !== 1){
         itemQuantity.html(parseFloat(itemQuantity.text()) - 1);
         itemTotalAmount.html(parseFloat(itemTotalAmount.text()) - parseFloat(price));
+        item_total_amount.val(parseFloat(itemTotalAmount.text()));
         itemTotalAmount.append(" EGP");
         orderTotalAmount.html(parseFloat(orderTotalAmount.text()) - parseFloat(price));
         totalAmount.val(parseFloat(orderTotalAmount.text()));
-        item_quantity.val(parseFloat(itemTotalAmount.text()));
+        item_quantity.val(parseFloat(itemQuantity.text()));
     
     }  
     });

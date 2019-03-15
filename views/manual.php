@@ -12,7 +12,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
 <div class="container-fluid">
     <div class="col-sm-4" style="float:left">
     <div class="row">
-        <form method="get">
+        <form action="addManualOrder.php" method="GET">
             <h1 class="modal-header"> Order</h1>
 
             <!-- OrderItems  -->
@@ -27,7 +27,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <!-- start notes -->
             <div class="form-group shadow-textarea">
                 <label for="exampleFormControlTextarea6">Notes</label>
-                <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write your notes ..."></textarea>
+                <textarea name="note" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write your notes ..."></textarea>
             </div>
 
             <!-- end notes -->
@@ -56,6 +56,8 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <div class="total-cost">
                 <h2 id="orderTotalAmount"> Total = <span>0<span> </h2>
                 <input id="total_amount" type="hidden" name="total_amount" value="0"/>
+                <input id="item_count" type="hidden" name="itemCount" value="0"/>
+                
             </div>
             <!-- Form Button -->
             <div class="order-btn">
@@ -97,7 +99,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
                         <div class="card-body">
                             <h5 id="name" class="card-title"><?php echo $product['product_name']; ?></h5>
                             <p id="price" class="card-text"><?php echo $product['price']; ?><span> .EGP</span></p>
-                            <input id="pid" type="hidden" value="<?php echo $product['id'] ?>" />
+                            <input id="pid" type="hidden" value="<?php echo $product['id']; ?>" />
                             <div class="order-btn">
                                 <input type="button" value="Order" class="orderTheItem btn btn-info" />
                             </div>
