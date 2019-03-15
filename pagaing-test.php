@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "bondok", "1234", "cafeteria-system");
+$conn = new mysqli("localhost", "egyjuba", "HM_hezfa@13194", "cafeteria-system");
 
 $result = $conn->query("SELECT * FROM category");
 

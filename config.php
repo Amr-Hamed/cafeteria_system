@@ -1,5 +1,8 @@
 <?php
-//setting the output buffer
+
+
+
+// setting the output buffer
 ob_start();
 
 //error handling

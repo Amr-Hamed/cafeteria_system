@@ -1,5 +1,7 @@
 <?php include '../templates/header.php'; 
 require_once('../config.php');
+session_start();
+$admin = $_SESSION['admin'];
 
 // Delete 
 if(isset($_GET["id"])){
