@@ -4,28 +4,50 @@ if (isset($_POST['logIn'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $result = DBModel::read("SELECT u.* FROM users u WHERE u.email ='". $email ."' AND u.password =$password");
+    $result = DBModel::read("SELECT u.* FROM users u WHERE u.email ='". $email ."'");
 
-    if ($result) {
+    if(password_verify($password, $result[0]['password'])){
+            if ($result) {
 
-        session_start();
-        $_SESSION['user_id'] = $result[0]['id'];
-        $_SESSION['admin'] = $result[0]['admin'];
+            session_start();
+            $_SESSION['user_id'] = $result[0]['id'];
+            $_SESSION['admin'] = $result[0]['admin'];
 
-        if($result[0]['admin'] == 1){
+            if($result[0]['admin'] == 1){
 
-            header("Location: /views/AdminHome.php");
+                header("Location: /cafeteria_system/views/AdminHome.php");
 
-        }
-        else {
+            }
+            else {
 
-            header("Location: /views/userHome.php");
+                header("Location: /cafeteria_system/views/userHome.php");
 
+            }
         }
     }
     else {
         echo 'Email or Password is invalid ';
     }
+    // if ($result) {
+
+    //     session_start();
+    //     $_SESSION['user_id'] = $result[0]['id'];
+    //     $_SESSION['admin'] = $result[0]['admin'];
+
+    //     if($result[0]['admin'] == 1){
+
+    //         header("Location: /views/AdminHome.php");
+
+    //     }
+    //     else {
+
+    //         header("Location: /views/userHome.php");
+
+    //     }
+    // }
+    // else {
+    //     echo 'Email or Password is invalid ';
+    // }
 }
 ?>
 
