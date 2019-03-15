@@ -2,11 +2,10 @@
 require_once('../config.php');
 $categories = DBModel::read("SELECT * FROM category",null);
 
-
+// Getting this product with id sent in query string to populate the form with already existed data
 if(isset($_GET["id"])){
     $id=$_GET["id"];
     $product =  DBModel::read("SELECT * FROM products WHERE id= $id",PDO::FETCH_CLASS,'Products');
-     
     $cat_id=$product->category_id;
 }
 
@@ -16,6 +15,7 @@ if(isset($_POST["pSubmit"]) && isset($_POST["pName"]) && isset($_POST["pPrice"])
     $newProduct->product_name=$_POST['pName'];
     $newProduct->price=$_POST['pPrice'];
     $newProduct->category_id=$_POST['pCatID'];
+    $newProduct->availability=$product->availability;
 
     if(($_FILES['product_pics']['tmp_name'])!=null){
 
@@ -81,6 +81,7 @@ if(isset($_POST["pSubmit"]) && isset($_POST["pName"]) && isset($_POST["pPrice"])
                     <div class="col-md-6 offset-md-4">
                         <button type="button" class="btn btn-warning">Reset</button>
                         <button type="submit" class="btn btn-success" name="pSubmit">Submit Changes</button>
+                        <a class="btn btn-info" href="/views/products.php">Back</a>
                     </div>
                 </div>
                 </form>

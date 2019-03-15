@@ -7,12 +7,12 @@ class DBModel{
         
         foreach ($this->dbFields as $field){
             if(is_int($this->$field) || is_double($this->$field)){
-                $sqlString [] = $field . " = " . $this->$field;
+                $sqlString [] = $field."=".$this->$field;
             }else{
-                $sqlString [] = $field . " = ' " . $this->$field . " '";
+                $sqlString [] = $field."='".$this->$field."'";
             }
         }
-        return implode( " , " , $sqlString );
+        return implode( "," , $sqlString );
     }
     public static function read($sql, $type = PDO::FETCH_ASSOC, $class = null)
     {
@@ -36,23 +36,23 @@ class DBModel{
     private function add ()
     {
         global $dbh;
-        $sql = "INSERT INTO " . $this->tableName . " SET " . $this->attributes();
-        
+        $sql = "INSERT INTO ".$this->tableName." SET ".$this->attributes();
+        echo $sql;
         $affectedRows = $dbh->exec($sql);
-      
+        
         if ($affectedRows != false) {
             $this->id = $dbh->lastInsertId();
         } else {
             return false;
         }
-        return true;
+        return $this->id;
     }
 
     public function update ()
     {
         global $dbh;
-        $sql = "UPDATE " . $this->tableName . " SET " . $this->attributes() .
-                 ' WHERE id = ' . $this->id;
+        $sql = "UPDATE " . $this->tableName." SET ".$this->attributes() .
+                 ' WHERE id ='. $this->id;
         $affectedRows = $dbh->exec($sql);
         return $affectedRows != false ? true : false;
     }
@@ -60,7 +60,7 @@ class DBModel{
     public function delete ()
     {
         global $dbh;
-        $sql = "DELETE FROM " . $this->tableName . ' WHERE id = ' . $this->id;
+        $sql = "DELETE FROM " . $this->tableName . ' WHERE id ='.$this->id;
         $affectedRows = $dbh->exec($sql);
        
         return $affectedRows != false ? true : false;

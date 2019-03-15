@@ -12,7 +12,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
 <div class="container-fluid">
     <div class="col-sm-4" style="float:left">
     <div class="row">
-        <form>
+        <form action="addManualOrder.php" method="GET">
             <h1 class="modal-header"> Order</h1>
 
             <!-- OrderItems  -->
@@ -27,7 +27,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <!-- start notes -->
             <div class="form-group shadow-textarea">
                 <label for="exampleFormControlTextarea6">Notes</label>
-                <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write your notes ..."></textarea>
+                <textarea name="note" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write your notes ..."></textarea>
             </div>
 
             <!-- end notes -->
@@ -55,12 +55,15 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <!-- End Of Form -->
             <div class="total-cost">
                 <h2 id="orderTotalAmount"> Total = <span>0<span> </h2>
+                <input id="total_amount" type="hidden" name="total_amount" value="0"/>
+                <input id="item_count" type="hidden" name="itemCount" value="0"/>
+                
             </div>
             <!-- Form Button -->
             <div class="order-btn">
-                <input type="submit" value="Confirm" class="btn btn-success">
+                <input type="submit" value="Confirm" name="confirm" class="btn btn-success">
             </div>
-        </form>
+    
 
         <!-- menu -->
         </div>
@@ -85,18 +88,18 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
                 </div>
             </div>
             <hr />
-
+            </form>
 
             <!-- products -->
             <div class="container" style="clear:both">
                 <?php if(isset($products)) {
                     foreach ($products as $product) {?>
                     <div class="card col-sm-3 product-card" style="float:left">
-                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo $product['product_picture']; ?>" alt="Card image cap" />
+                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo "data:image/jpeg;base64," . base64_encode($product['product_picture']);?>" alt="Card image cap" />
                         <div class="card-body">
                             <h5 id="name" class="card-title"><?php echo $product['product_name']; ?></h5>
                             <p id="price" class="card-text"><?php echo $product['price']; ?><span> .EGP</span></p>
-                            <input id="pid" type="hidden" value="<?php echo $product['id'] ?>" />
+                            <input id="pid" type="hidden" value="<?php echo $product['id']; ?>" />
                             <div class="order-btn">
                                 <input type="button" value="Order" class="orderTheItem btn btn-info" />
                             </div>
