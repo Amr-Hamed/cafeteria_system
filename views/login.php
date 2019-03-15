@@ -10,6 +10,7 @@ if (isset($_POST['logIn'])) {
 
         session_start();
         $_SESSION['user_id'] = $result[0]['id'];
+        $_SESSION['admin'] = $result[0]['admin'];
 
         if($result[0]['admin'] == 1){
 

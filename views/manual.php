@@ -37,9 +37,9 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
                 <label for="room" class="col-md-3 col-form-label text-md-center">Room</label>
                 <div class="col-md-8">
 
-                    <select name="room" style="width: 100%;padding-top:2%;margin-top:2%">
+                    <select name="room" style="width: 100%;padding-top:2%;margin-top:2%" required>
 
-                        <option selected>Select Room</option>
+                        <option selected disabled>Select Room</option>
                         <?php if(isset($rooms)) {
                             foreach ($rooms as $room) {?>
 
@@ -71,11 +71,11 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <div class="add-to-user">
                 <div class="form-group row">
                     <label for="user" class="col-md-3 col-form-label text-md-center">
-                        <h3>Add To User :</h3>
+                        <h3>Add To User:</h3>
                     </label>
                     <div class="col-md-8">
-                        <select name="user" style="width: 100%;padding-top:2%;margin-top:2%">
-                            <option selected>Select User</option>
+                        <select name="user" style="width: 100%;padding-top:2%;margin-top:2%" required>
+                            <option selected disabled>Select User</option>
                              <?php if(isset($users)) {
                                 foreach ($users as $user) {?>
 
@@ -92,10 +92,13 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
 
             <!-- products -->
             <div class="container" style="clear:both">
+                    <div>
+                      <h2><span>Available Products</span></h2>
+                    </div>
                 <?php if(isset($products)) {
                     foreach ($products as $product) {?>
                     <div class="card col-sm-3 product-card" style="float:left">
-                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo "data:image/jpeg;base64," . base64_encode($product['product_picture']);?>" alt="Card image cap" />
+                        <img class="card-img-top buy-pic" width="150" height="150" src="<?php echo $product['product_picture'];?>" alt="Card image cap" />
                         <div class="card-body">
                             <h5 id="name" class="card-title"><?php echo $product['product_name']; ?></h5>
                             <p id="price" class="card-text"><?php echo $product['price']; ?><span> .EGP</span></p>
