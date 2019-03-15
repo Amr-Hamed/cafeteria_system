@@ -19,7 +19,7 @@ if (isset($_POST['email'])) {
                       WHERE email='$email'
             ");
             $mail = new PHPMailer\PHPMailer\PHPMailer();
-	        $mail->SMTPDebug = 1;
+	        $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = TRUE;
@@ -45,11 +45,11 @@ if (isset($_POST['email'])) {
 	        ";
 
 	        if ($mail->send())
-    	        header('Location: /cafeteria_system/views/login.php');
+    	        echo "An Email has been sent to your email, Please Check your Inbox";
     	    else
-    	        exit(json_encode(array("status" => 0, "msg" => 'Something Wrong Just Happened! Please try again!')));
+    	        echo 'Something Wrong Just Happened! Please try again!';
         } else
-            exit(json_encode(array("status" => 0, "msg" => 'Please Check Your Inputs!')));
+            echo 'Please Check Your Inputs!';
     }
 ?>
 
@@ -79,10 +79,6 @@ if (isset($_POST['email'])) {
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="forget">Send Email</button>
         </form>
-        <!-- <input class="form-control" id="email" placeholder="Your Email Address"><br>
-        <input type="button" class="btn btn-primary" value="Reset Password">
-        <br><br>
-        <p id="response"></p> -->
 
     </div>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"
@@ -94,21 +90,6 @@ if (isset($_POST['email'])) {
         $('.btn-primary').on('click', function() {
             if (email.val() != "") {
                 email.css('border', '1px solid green');
-
-                // $.ajax({
-                //     url: 'forgetpassword.php',
-                //     method: 'POST',
-                //     dataType: 'json',
-                //     data: {
-                //         email: email.val()
-                //     },
-                //     success: function(response) {
-                //         if (!response.success)
-                //             $("#response").html(response.msg).css('color', "red");
-                //         else
-                //             $("#response").html(response.msg).css('color', "green");
-                //     }
-                // });
             } else
                 email.css('border', '1px solid red');
         });

@@ -1,5 +1,8 @@
 <?php include '../templates/header.php';
 require_once('../config.php');
+session_start();
+$admin = $_SESSION['admin'];
+
 $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -72,7 +75,7 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
         $start_date = "'".$_POST['start']." 00:00:00'";
         $end_date = "'".$_POST['end']." 23:59:59'";      
             
-        if(isset($submit)){
+        if(isset($submit) && $_POST['start'] != null && $_POST['end'] != null){
             if(isset($user_id)){ 
                 $user_name = DBModel::read("SELECT u.name FROM users u WHERE u.id = $user_id",null);
                 if( $_POST['start'] !== NULL){

@@ -1,5 +1,8 @@
 <?php include '../templates/header.php'; 
 require_once('../config.php');
+session_start();
+$admin = $_SESSION['admin'];
+
 $categories = DBModel::read("SELECT * FROM category",null);
 
 // Getting this product with id sent in query string to populate the form with already existed data

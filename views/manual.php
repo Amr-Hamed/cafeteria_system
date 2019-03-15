@@ -71,7 +71,7 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
             <div class="add-to-user">
                 <div class="form-group row">
                     <label for="user" class="col-md-3 col-form-label text-md-center">
-                        <h3>Add To User :</h3>
+                        <h3>Add To User:</h3>
                     </label>
                     <div class="col-md-8">
                         <select name="user" style="width: 100%;padding-top:2%;margin-top:2%" required>
@@ -92,6 +92,9 @@ $rooms = DBModel::read("SELECT DISTINCT u.room FROM users u WHERE u.admin = 0",n
 
             <!-- products -->
             <div class="container" style="clear:both">
+                    <div>
+                      <h2><span>Available Products</span></h2>
+                    </div>
                 <?php if(isset($products)) {
                     foreach ($products as $product) {?>
                     <div class="card col-sm-3 product-card" style="float:left">
