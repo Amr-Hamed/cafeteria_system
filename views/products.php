@@ -1,6 +1,7 @@
 <?php
-    include '../templates/header.php';
-    include '../config.php';
+require_once('../config.php');
+require_once('../templates/header.php');
+    
 
 
 // Delete

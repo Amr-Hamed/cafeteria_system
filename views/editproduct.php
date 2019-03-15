@@ -1,6 +1,7 @@
-<?php include '../templates/header.php'; 
+<?php 
 require_once('../config.php');
-session_start();
+require_once('../templates/header.php'); 
+
 $admin = $_SESSION['admin'];
 
 $categories = DBModel::read("SELECT * FROM category",null);

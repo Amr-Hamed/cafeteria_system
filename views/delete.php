@@ -1,5 +1,5 @@
 <?php require_once('../config.php');
-session_start();
+
 $user_id = $_SESSION['user_id'];
 
 // echo "ID = " . $_GET['id'];

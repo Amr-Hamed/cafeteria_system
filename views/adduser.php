@@ -1,5 +1,7 @@
-<?php include '../templates/header.php'; 
+<?php 
 require_once('../config.php');
+require_once('../templates/header.php'); 
+
 
 if(isset($_POST["uSubmit"]) && isset($_POST["full-name"]) && isset($_POST["email-address"]) && isset($_POST["password"]) && isset($_POST["confirm-password"]) && isset($_POST["roomNumber"]) && isset($_POST["permanent-address"])  ){
     $uMail=$_POST["email-address"];
