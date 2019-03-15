@@ -10,9 +10,9 @@ if(isset($_GET["id"])){
 }
 if(isset($_POST["uSubmit"]) && isset($_POST["full-name"]) && isset($_POST["email-address"]) && isset($_POST["password"])  && isset($_POST["roomNumber"]) && isset($_POST["permanent-address"])  ){
     $newUser = new Users();
-    $newUser->name=$_POST['full-name'];
-    $newUser->password=$_POST['password'];
-    $newUser->email=$_POST["email-address"];
+    $newUser->name=trim($_POST['full-name']);
+    $newUser->password=trim($_POST['password']);
+    $newUser->email=trim($_POST["email-address"]);
     $newUser->room=$_POST["roomNumber"];
     $newUser->ext=$_POST["permanent-address"];
     $im='data:image/jpeg;base64,'.base64_encode(file_get_contents($_FILES['profile_pics']['tmp_name']));
