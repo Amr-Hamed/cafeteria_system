@@ -26,8 +26,8 @@ define( "VIEWS_PATH" , APP_PATH . 'views' . DS);
 define('DB_HOST' , 'localhost');
 define('DB_NAME' , 'cafeteria_system');
 
-define('DB_USER' , 'root');
-define('DB_PASS' , '');
+define('DB_USER' , 'egyjuba');
+define('DB_PASS' , 'HM_hezfa@13194');
 
 
 //setting new path
