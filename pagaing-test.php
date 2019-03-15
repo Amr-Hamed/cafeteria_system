@@ -33,7 +33,7 @@ a{
 </style>
 <div class='pagination'>
      <a href="pagaing-test.php?page=<?php echo ($page-1);?>" style ="<?php if($page == 1) echo 'pointer-events: none'; else echo '""'; ?>" > < </a>
-     <span> <?php echo ($page);?> </span>
+     <span> <?php echo " " .($page) . " ";?> </span>
     <a href="pagaing-test.php?page=<?php echo ($page+1);?>" style ="<?php if($page == $total_no_of_pages) echo 'pointer-events: none'; else echo '""'; ?>" > > </a> 
 </div>
     
