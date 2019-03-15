@@ -131,3 +131,6 @@ margin: 1%;
 .addPics{
   float: right;
 }
+.cform{
+  display: -webkit-inline-box;
+}

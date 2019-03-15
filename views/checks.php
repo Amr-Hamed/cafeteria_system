@@ -1,5 +1,8 @@
 <?php include '../templates/header.php';
 require_once('../config.php');
+session_start();
+$admin = $_SESSION['admin'];
+
 $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">

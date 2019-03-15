@@ -1,5 +1,8 @@
 <?php
-//setting the output buffer
+
+
+
+// setting the output buffer
 ob_start();
 
 //error handling
@@ -27,6 +30,11 @@ define('DB_HOST' , 'sql2.freesqldatabase.com');
 define('DB_NAME' , 'sql2283442');
 define('DB_USER' , 'sql2283442');
 define('DB_PASS' , 'kM3%iN7%');
+
+// define('DB_HOST' , 'localhost');
+// define('DB_NAME' , 'cafeteria_system');
+// define('DB_USER' , 'Gom3a');
+// define('DB_PASS' , '123456');
 
 
 //setting new path

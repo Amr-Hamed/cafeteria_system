@@ -3,6 +3,9 @@ session_start();
 if(!isset($_SESSION['user_id'])){
     header("Location: /");
 }
+
+$user = DBModel::read("SELECT DISTINCT u.* FROM users u WHERE u.id = ".$_SESSION['user_id'], PDO::FETCH_CLASS,'Users');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,16 +59,16 @@ if(!isset($_SESSION['user_id'])){
             <ul class="nav navbar-nav navbar-right profile-pic">
                 <li>
                     <div class="inset">
-                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
+                        <img src="<?php if(isset($user->picture) && $user->picture != null) echo $user->picture; else echo "http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"; ?>">
                     </div>
                 </li>
             </ul>
 
             <div class="pull-right " style="padding-left: 2%">
                 <ul class="nav pull-right user-name">
-                    <li class="dropdown navbar-text"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, User <b class="caret"></b></a>
+                    <li class="dropdown navbar-text"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?php echo $user->name; ?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="logout.php"> Logout</a></li>
+                        <a href="logout.php" style="color:#000;text-decoration:none"><li>Logout</li></a>
                         </ul>
                     </li>
                 </ul>

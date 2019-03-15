@@ -1,5 +1,8 @@
-<?php include '../templates/header.php'; 
+<?php 
 require_once('../config.php');
+require_once('../templates/header.php'); 
+
+$admin = $_SESSION['admin'];
 
 // Delete 
 if(isset($_GET["id"])){
@@ -7,18 +10,6 @@ if(isset($_GET["id"])){
     $user->id=$_GET["id"];
     $user->delete();
     header('Location:users.php');
-}
-if(isset($_POST["uSubmit"]) && isset($_POST["full-name"]) && isset($_POST["email-address"]) && isset($_POST["password"])  && isset($_POST["roomNumber"]) && isset($_POST["permanent-address"])  ){
-    $newUser = new Users();
-    $newUser->name=trim($_POST['full-name']);
-    $newUser->password=trim($_POST['password']);
-    $newUser->email=trim($_POST["email-address"]);
-    $newUser->room=$_POST["roomNumber"];
-    $newUser->ext=$_POST["permanent-address"];
-    $im='data:image/jpeg;base64,'.base64_encode(file_get_contents($_FILES['profile_pics']['tmp_name']));
-    $newUser->picture=$im;
-    $newUser->save();
-     header('Location:users.php');
 }
 
 $users = DBModel::read("SELECT * FROM users",null);

@@ -4,7 +4,7 @@ class DBModel{
     public function attributes(){
 
         $sqlString = array();
-        
+
         foreach ($this->dbFields as $field){
             if(is_int($this->$field) || is_double($this->$field)){
                 $sqlString [] = $field."=".$this->$field;
@@ -26,7 +26,7 @@ class DBModel{
                 }
             } else {
                 $data = $results->fetchAll($type);
-            }          
+            }
             return $data;
         } else {
             return false;
@@ -39,7 +39,7 @@ class DBModel{
         $sql = "INSERT INTO ".$this->tableName." SET ".$this->attributes();
         echo $sql;
         $affectedRows = $dbh->exec($sql);
-        
+
         if ($affectedRows != false) {
             $this->id = $dbh->lastInsertId();
         } else {
@@ -62,7 +62,7 @@ class DBModel{
         global $dbh;
         $sql = "DELETE FROM " . $this->tableName . ' WHERE id ='.$this->id;
         $affectedRows = $dbh->exec($sql);
-       
+
         return $affectedRows != false ? true : false;
     }
     public function delOrder()
