@@ -5,7 +5,7 @@ Class Orders extends DBModel {
     public $id;
     public $user_id;
     public $state;
-    public $note;
+    public $notes;
     public $date;
     public $amount;
 
