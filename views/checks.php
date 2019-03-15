@@ -46,7 +46,7 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
                             </option>
                              <?php if(isset($users)) {
                                  foreach ($users as $user) {?>
-                                    <option value="<?php echo $user['name']; ?>"><?php echo $user['name'];?></option>
+                                    <option value="<?php echo $user['id']; ?>"><?php echo $user['name'];?></option>
                             <?php }}?>            
                         </select>
                     </div>
@@ -54,18 +54,6 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
             </div>
             <hr />
 </div>
-<!-- <?php 
-// $test = 1;
-// $targetUser = DBModel::read("SELECT u.* FROM users u WHERE u.id = $test ",null);
-// if(isset($targetUser)){
-//     // echo gettype($targetUser);
-//     foreach ($targetUser as $tuser){
-//         echo $tuser['name'];
-//     }
-//     // echo $targetUser[0].['name'];
-// }else { echo "false";}
-?> -->
-
 
 <!-- Users Table  -->
 
@@ -80,40 +68,61 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
         <tbody>
         <?php 
         $submit = $_POST['submit'];
-        // $user = $_POST['user'];
-        $user = "amr";
-        $user_id = DBModel::read("SELECT u.id FROM users u WHERE u.name = $user ",null);
-        echo $user_id[0]['id'];
-        echo gettype($user_id);
-        // $amount = DBModel::read("SELECT SUM(o.amount) FROM orders o WHERE u.user_id = $user_id",null);
-        // echo $user_id[0] . " i" . $amount['amount'];
-        // echo gettype($amount) . " echo " . gettype($user_id);
-        // echo $user;
-        // foreach ($user_id as $elment)
-        // {
-        //     echo $elment['id'];
-        // }
+        $user_id = $_POST['user'];
+        $start_date = "'".$_POST['start']." 00:00:00'";
+        $end_date = "'".$_POST['end']." 23:59:59'";      
+            
         if(isset($submit)){
-            if(isset($user)){ 
-                echo "<tr> 
-                        <th> $user </tr> 
-                      </tr>";
+            if(isset($user_id)){ 
+                $user_name = DBModel::read("SELECT u.name FROM users u WHERE u.id = $user_id",null);
+                if( $_POST['start'] !== NULL){
+                    if( $_POST['end'] !== NULL ){
+                        echo "end is set";
+                        $amount = DBModel::read("SELECT SUM(o.amount) FROM orders o WHERE o.user_id = $user_id and DATE(`date`) BETWEEN $start_date
+                        AND $end_date ",null);
+                        ?> 
+                        <tr>
+                            <th> <?php echo $user_name[0]['name']; ?> </th>
+                                <td> <?php 
+                                    foreach ($amount as $element){
+                                    echo $element[0];
+                                     } ?>
+                                </td>
+                             </th>
+                        </tr>
+                        <?php
+                    } else {
+                        $amount = DBModel::read("SELECT SUM(o.amount) FROM orders o WHERE o.user_id = $user_id and DATE(`date`) >= $start_date ",null);
+                        echo $amount;
+                        echo gettype($amount);
+                        echo "end is not set";
+                        ?> 
+                        <tr>
+                            <th> <?php echo $user_name[0]['name']; ?> </th>
+                                <td> <?php 
+                                    foreach ($amount as $element){
+                                    echo $element[0];
+                                     } ?>
+                                </td>
+                             </th>
+                        </tr>
+                        <?php                        
+                    }
+                }
             }
-        }
-            // <tr>
-            //     <th scope="row">Hesham</th>
-            //     <td>110</td>
-            // </tr>
-
-            // <tr>
-            //     <th scope="row">Hesham Again</th>
-            //     <td>200</td>
-            // </tr>
-            // <tr>
-            //     <th scope="row">Hesham Again ++ </th>
-            //     <td>245</td>
-            // </tr>
-            ?>
+        }else { 
+            foreach ($users as $user){ ?>
+                <tr> 
+                    <th> <?php echo $user['name']; 
+                            $user_id = $user['id']; ?> </th> 
+                      <td> <?php $amount = DBModel::read("SELECT SUM(o.amount) FROM orders o WHERE o.user_id = $user_id",null);
+                                foreach ($amount as $element){
+                                    echo $element[0];
+                                }?>
+                        </td>
+                    </th>
+                </tr>
+            <?php }} ?>          
         </tbody>
     </table>
 </div>
@@ -121,3 +130,4 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0",null);
 </form>
 
 </html> 
+
