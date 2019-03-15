@@ -1,11 +1,11 @@
 <?php require_once('../config.php'); 
-if(isset($_GET['confirm'])){
+if(isset($_GET['confirm']) && $_GET['itemCount'] > 0){
 
     $order = new Orders();
     $order->user_id = $_GET["user"];
     $order->amount = $_GET["total_amount"];
     $order->note = $_GET["note"];
-    $order->state = " Processing ";
+    $order->state = "Processing";
     $order->date = date("Y-m-d H:i:s");
 
     $orderId = $order->save();
@@ -30,6 +30,9 @@ if(isset($_GET['confirm'])){
         }
     }
 
+    header("Location: manual.php");
+}else{
+    header("Location: manual.php");
 }
 
 

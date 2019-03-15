@@ -6,6 +6,7 @@ $(document).ready(function(){
 
     console.log(orderTotalAmount);
     let i = 0;
+    let count = 0;
     $(".orderTheItem").click(function(){
         i++;
         let name = $(this).parent().parent().find("#name").text();
@@ -17,7 +18,7 @@ $(document).ready(function(){
         $(this).css('opacity','0.5');
         orderTotalAmount.html(parseFloat(orderTotalAmount.text()) + parseFloat(price));
         totalAmount.val(parseFloat(orderTotalAmount.text()));
-        itemCount.val(i);
+        itemCount.val(++count);
         
      $("#orderItemContainer").append(`
      <div id="orderItem${i}" class="row product-row" style="margin: auto;">
@@ -82,7 +83,7 @@ $(document).ready(function(){
     // When Remove ordered Item
     $(`#orderItem${i}`).find(".removeItem").click( function () {
         let itemTotalAmount = $(this).parent().parent().find(".itemTotalAmount");
-        
+        itemCount.val(--count);
         orderTotalAmount.html(parseFloat(orderTotalAmount.text()) - parseFloat(itemTotalAmount.text()));
         totalAmount.val(parseFloat(orderTotalAmount.text()));
         console.log(parseFloat(orderTotalAmount.html()));
