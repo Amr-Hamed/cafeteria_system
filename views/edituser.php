@@ -1,5 +1,9 @@
-<?php include '../templates/header.php'; 
+<?php 
 require_once('../config.php');
+require_once('../templates/header.php'); 
+
+session_start();
+$admin = $_SESSION['admin'];
 
 // Getting this user with id sent in query string to populate the form with already existed data
 if(isset($_GET["id"])){

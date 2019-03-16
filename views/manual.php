@@ -1,6 +1,6 @@
 <?php require_once('../config.php'); 
 require_once(TEMPLATE_PATH . 'header.php');
-session_start();
+
 $user_id = $_SESSION['user_id'];
 
 $products = DBModel::read("SELECT p.* FROM products p WHERE p.availability = 1",null);

@@ -1,5 +1,6 @@
 <?php
-//setting the output buffer
+
+// setting the output buffer
 ob_start();
 
 //error handling
@@ -23,11 +24,22 @@ define( "LIB_PATH" , APP_PATH . 'lib' . DS);
 define( "MODELS_PATH" , APP_PATH . 'models' . DS);
 define( "VIEWS_PATH" , APP_PATH . 'views' . DS);
 //DB credentials
+<<<<<<< HEAD
 define('DB_HOST' , '127.0.0.1');
 define('DB_NAME' , 'cafeteria_system');
 define('DB_USER' , 'Mostafa');
 define('DB_PASS' , '123456');
+=======
+// define('DB_HOST' , 'sql2.freesqldatabase.com');
+// define('DB_NAME' , 'sql2283442');
+// define('DB_USER' , 'sql2283442');
+// define('DB_PASS' , 'kM3%iN7%');
+>>>>>>> c05037d7dcb22af43776fd3863c0daa6e351e6a8
 
+define('DB_HOST' , 'localhost');
+define('DB_NAME' , 'cafeteria_system');
+define('DB_USER' , 'Mostafa');
+define('DB_PASS' , '123456');
 
 //setting new path
 $path =  get_include_path() . PS . LIB_PATH . PS . MODELS_PATH;

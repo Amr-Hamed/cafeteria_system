@@ -1,5 +1,8 @@
-<?php include '../templates/header.php'; 
+<?php 
 require_once('../config.php');
+require_once('../templates/header.php'); 
+
+$admin = $_SESSION['admin'];
 
 if(isset($_POST["submitCategory"])){
     var_dump ($_POST["cat-name"]);
