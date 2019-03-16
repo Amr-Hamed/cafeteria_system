@@ -36,6 +36,17 @@ if(isset($_POST["availability"])){
 
 $categories = DBModel::read("SELECT * FROM category",null);
 $products = DBModel::read("SELECT * FROM products",null);
+$nr =  sizeof($products);
+$items_per_page = 1;
+$total_no_of_pages = ceil($nr / $items_per_page);
+$page = 1;
+
+if(isset($_GET['page']))
+    $page = $_GET['page'];
+
+$offset = ($page-1) * $items_per_page;
+
+
 ?>
 
 <div class="container-fluid ">
@@ -59,52 +70,18 @@ $products = DBModel::read("SELECT * FROM products",null);
                 </tr>
             </thead>
             <tbody>
-
-                <?php
-            // Find out how many items are in the table
-            $total = $dbh->query('SELECT COUNT(*) FROM products')->fetchColumn();
-            // How many items to list per page
-            $limit = 4;
-            // How many pages will there be
-            $pages = ceil($total / $limit);
-            // What page are we currently on?
-            $page = min($pages, filter_input(
-                INPUT_GET, 'page',
-                FILTER_VALIDATE_INT,
-                array('options' => array('default' => 1, 'min_range' => 1,),
-            )));
-            // Calculate the offset for the query
-            $offset = ($page - 1)  * $limit;
-            // Some information to display to the user
-            $start = $offset + 1;
-            $end = min(($offset + $limit), $total);
-
-    // Prepare the paged query
-            $stmt = $dbh->prepare('SELECT * FROM products');
-            $stmt->execute();
-
-            // Do we have any results?
-            if ($stmt->rowCount() > 0) {
-                // Define how we want to fetch the results
-                $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                $iterator = new IteratorIterator($stmt);
-            }
-            else {
-                echo '<p>No results could be displayed.</p>';
-            }
-?>
-
                 <?php if(isset($products)) {
-                    foreach ($products as $product) {?>
+                    for($i= $offset ; $i<$items_per_page + $offset; $i++){?>
                         <tr>
                             <th scope="row"><?php echo $product['product_name']?></th>
                             <td><?php echo $product['price']?></td>
-                            <td>
+                            <td> 
                                 <div class="product_inset">
-                                
-                                <img class="card-img-top buy-pic" width="150" height="150" src=<?php echo $product['product_picture']; ?>  alt="Card image cap" />
-                                    <!-- <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"> -->
-                                    
+                                <?php if($product['product_picture']!='data:image/jpeg;base64,'){?>
+                                    <img class="card-img-top buy-pic" width="150" height="150" src=<?php echo $product['product_picture'];?>>
+                                    <?php } else {?>
+                                        <img src="https://www.portugalbusinessontheway.com/wp-content/uploads/2019/02/SABORES-DAS-QUINAS-01.jpg" width="150" height="150">
+                                    <?php } ?>
                                 </div>
                             </td>
                             <td>
@@ -113,13 +90,13 @@ $products = DBModel::read("SELECT * FROM products",null);
                                 <div class="col-md-6">
                                     <form action="" method="POST">
                                         <select id="av" list="products" class="form-control" name="availability" style="width:40%" onchange="this.form.submit()" required >
-                                                <option <?php if($product['availability']==1) echo "selected";?> value="1<?php echo $product['id'];?>">Available</option>
-                                                <option <?php if($product['availability']==0) echo "selected";?> value="0<?php echo $product['id'];?>">Not Available</option>
+                                                <option <?php if($products[$i]['availability']==1) echo "selected";?> value="1<?php echo $products[$i]['id'];?>">Available</option>
+                                                <option <?php if($products[$i]['availability']==0) echo "selected";?> value="0<?php echo $products[$i]['id'];?>">Not Available</option>
                                         </select>
                                     </form>
                                 </div>
-                                <a class="btn btn-info" href="/views/editproduct.php?id=<?php echo $product['id']?>">Edit</a>
-                                <a class="btn btn-info" href="/views/products.php?id=<?php echo $product['id']?>">Delete</a>
+                                <a class="btn btn-info" href="/views/editproduct.php?id=<?php echo $products[$i]['id']?>">Edit</a>
+                                <a class="btn btn-info" href="/views/products.php?id=<?php echo $products[$i]['id']?>">Delete</a>
                                 
                             </div> 
                             </td>
@@ -130,13 +107,13 @@ $products = DBModel::read("SELECT * FROM products",null);
         </table>
     </div>
 
-    <?php
-    $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
-    //The "forward" link
-    $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
-    //Display the paging information
-    echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
-    ?>
+    
+    <div class='pagination'>
+    <a href="products.php?page=<?php echo ($page-1);?>" style ="<?php if($page == 1) echo 'pointer-events: none'; else echo '""'; ?>" > < </a>
+    <span> <?php echo "&nbsp" .($page) . "&nbsp";?> </span>
+   <a href="products.php?page=<?php echo ($page+1);?>" style ="<?php if($page == $total_no_of_pages) echo 'pointer-events: none'; else echo '""'; ?>" > > </a> 
+</div>
+    
 
     <!-- end of users Table -->
 
