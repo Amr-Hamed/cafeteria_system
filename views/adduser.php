@@ -14,7 +14,11 @@ if(isset($_POST["uSubmit"]) && isset($_POST["full-name"]) && isset($_POST["email
     $newUser->email=trim($_POST["email-address"]);
     $newUser->room=$_POST["roomNumber"];
     $newUser->ext=$_POST["permanent-address"];
-    $im='data:image/jpeg;base64,'.base64_encode(file_get_contents($_FILES['profile_pics']['tmp_name']));
+
+    if(is_uploaded_file($_FILES['profile_pics']['tmp_name'])){
+        $im='data:image/jpeg;base64,'.base64_encode(file_get_contents($_FILES['profile_pics']['tmp_name']));
+    }
+    
     $newUser->picture=$im;
     $newUser->save();
     $check_password=1;

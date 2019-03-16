@@ -1,59 +1,61 @@
 <?php
 
 if (isset($_POST['logIn'])) {
-    // $email = $_POST['email'];
-    // $password = $_POST['password'];
-
-    // $result = DBModel::read("SELECT u.* FROM users u WHERE u.email ='". $email ."'");
-
-    // if(password_verify($password, $result[0]['password'])){
-    //         if ($result) {
-
-    //         session_start();
-    //         $_SESSION['user_id'] = $result[0]['id'];
-    //         $_SESSION['admin'] = $result[0]['admin'];
-
-    //         if($result[0]['admin'] == 1){
-
-    //             header("Location: /cafeteria_system/views/AdminHome.php");
-
-    //         }
-    //         else {
-
-    //             header("Location: /cafeteria_system/views/userHome.php");
-
-    //         }
-    //     }
-    // }
-    // else {
-    //     echo 'Email or Password is invalid ';
-    // }
-
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $result = DBModel::read("SELECT u.* FROM users u WHERE u.email ='$email' AND u.password ='$password'");
 
-    if ($result) {
+    $result = DBModel::read("SELECT u.* FROM users u WHERE u.email ='". $email ."'");
 
-        session_start();
-        $_SESSION['user_id'] = $result[0]['id'];
-        $_SESSION['admin'] = $result[0]['admin'];
+    if(password_verify($password, $result[0]['password'])){
+            if ($result) {
 
-        if($result[0]['admin'] == 1){
+            session_start();
+            $_SESSION['user_id'] = $result[0]['id'];
+            $_SESSION['admin'] = $result[0]['admin'];
 
-            header("Location: /views/AdminHome.php");
+            if($result[0]['admin'] == 1){
 
-        }
-        else {
+                header("Location: /views/AdminHome.php");
 
-            header("Location: /views/userHome.php");
+            }
+            else {
 
+                header("Location: /views/userHome.php");
+
+            }
         }
     }
     else {
         echo 'Email or Password is invalid ';
     }
+
 }
+
+//     $email = $_POST['email'];
+//     $password = $_POST['password'];
+//     $result = DBModel::read("SELECT u.* FROM users u WHERE u.email ='$email' AND u.password ='$password'");
+
+//     if ($result) {
+
+//         session_start();
+//         $_SESSION['user_id'] = $result[0]['id'];
+//         $_SESSION['admin'] = $result[0]['admin'];
+
+//         if($result[0]['admin'] == 1){
+
+//             header("Location: /views/AdminHome.php");
+
+//         }
+//         else {
+
+//             header("Location: /views/userHome.php");
+
+//         }
+//     }
+//     else {
+//         echo 'Email or Password is invalid ';
+//     }
+// }
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +103,7 @@ if (isset($_POST['logIn'])) {
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="logIn">Log In</button>
         </form>
-        <a href="./forgetpassword.php">Forget Password?</a>
+        <a href="/views/forgetpassword.php">Forget Password?</a>
     </div>
 </body>
 

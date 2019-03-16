@@ -28,8 +28,8 @@ if(isset($_POST["uSubmit"]) && isset($_POST["full-name"]) && isset($_POST["email
             $newUser->room=$_POST["roomNumber"];
             $newUser->ext=$_POST["permanent-address"];
             $newUser->admin=$user->admin;
-                if(($_FILES["profile_pics"]['tmp_name'])!=null){
-
+                //if(($_FILES["profile_pics"]['tmp_name'])!=null){
+                if(is_uploaded_file($_FILES['profile_pics']['tmp_name'])){
                     $im='data:image/jpeg;base64,'.base64_encode(file_get_contents($_FILES["profile_pics"]['tmp_name']));
                     $newUser->picture=$im;
                 }
