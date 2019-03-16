@@ -59,7 +59,7 @@ $user = DBModel::read("SELECT DISTINCT u.* FROM users u WHERE u.id = ".$_SESSION
             <ul class="nav navbar-nav navbar-right profile-pic">
                 <li>
                     <div class="inset">
-                        <img src="<?php if(isset($user->picture) && $user->picture != null) echo $user->picture; else echo "http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"; ?>">
+                        <img src="<?php if($user->picture) echo $user->picture; else echo "http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"; ?>">
                     </div>
                 </li>
             </ul>

@@ -21,8 +21,8 @@ if(isset($_POST["pSubmit"]) && isset($_POST["pName"]) && isset($_POST["pPrice"])
     $newProduct->category_id=$_POST['pCatID'];
     $newProduct->availability=$product->availability;
 
-    if(($_FILES['product_pics']['tmp_name'])!=null){
-
+    //if(($_FILES['product_pics']['tmp_name'])!==null){
+    if(is_uploaded_file($_FILES['product_pics']['tmp_name'])){
         $im='data:image/jpeg;base64,'.base64_encode(file_get_contents($_FILES['product_pics']['tmp_name']));
         $newProduct->product_picture=$im;
     }

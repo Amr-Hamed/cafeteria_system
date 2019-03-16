@@ -19,7 +19,10 @@ if(isset($_POST["pSubmit"]) && isset($_POST["pName"]) && isset($_POST["pPrice"])
     $newProduct->price=$_POST['pPrice'];
     $newProduct->category_id=$_POST['pCatID'];
 
+
+    if(is_uploaded_file($_FILES['product_pics']['tmp_name'])){
     $im='data:image/jpeg;base64,'.base64_encode(file_get_contents($_FILES['product_pics']['tmp_name']));
+    }
     $newProduct->product_picture=$im;
     $newProduct->save();
      header('Location:products.php');
@@ -37,7 +40,7 @@ if(isset($_POST["availability"])){
 $categories = DBModel::read("SELECT * FROM category",null);
 $products = DBModel::read("SELECT * FROM products",null);
 $nr =  sizeof($products);
-$items_per_page = 1;
+$items_per_page = 3;
 $total_no_of_pages = ceil($nr / $items_per_page);
 $page = 1;
 
@@ -70,22 +73,21 @@ $offset = ($page-1) * $items_per_page;
                 </tr>
             </thead>
             <tbody>
-                <?php if(isset($products)) {
-                    for($i= $offset ; $i<$items_per_page + $offset; $i++){?>
+                <?php if(count($products)) {
+                    for($i= $offset ; $i<$items_per_page + $offset; $i++){   if($products[$i]){ ?>
                         <tr>
-                            <th scope="row"><?php echo $product['product_name']?></th>
-                            <td><?php echo $product['price']?></td>
+                            <th scope="row"><?php echo $products[$i]['product_name']?></th>
+                            <td><?php echo $products[$i]['price']?></td>
                             <td> 
                                 <div class="product_inset">
-                                <?php if($product['product_picture']!='data:image/jpeg;base64,'){?>
-                                    <img class="card-img-top buy-pic" width="150" height="150" src=<?php echo $product['product_picture'];?>>
+                                <?php if($products[$i]['product_picture']){?>
+                                    <img class="card-img-top buy-pic" width="150" height="150" src=<?php echo $products[$i]['product_picture'];?>>
                                     <?php } else {?>
                                         <img src="https://www.portugalbusinessontheway.com/wp-content/uploads/2019/02/SABORES-DAS-QUINAS-01.jpg" width="150" height="150">
                                     <?php } ?>
                                 </div>
                             </td>
                             <td>
-                                <!--  -->
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <form action="" method="POST">
@@ -102,26 +104,18 @@ $offset = ($page-1) * $items_per_page;
                             </td>
                         </tr>
                                          
-                <?php }}?>
+                <?php }}}?>
             </tbody>
         </table>
     </div>
 
     
     <div class='pagination'>
-    <a href="products.php?page=<?php echo ($page-1);?>" style ="<?php if($page == 1) echo 'pointer-events: none'; else echo '""'; ?>" > < </a>
-    <span> <?php echo "&nbsp" .($page) . "&nbsp";?> </span>
-   <a href="products.php?page=<?php echo ($page+1);?>" style ="<?php if($page == $total_no_of_pages) echo 'pointer-events: none'; else echo '""'; ?>" > > </a> 
-</div>
+        <a href="products.php?page=<?php echo ($page-1);?>" style ="<?php if($page == 1) echo 'pointer-events: none'; else echo '""'; ?>" > < </a>
+        <span> <?php echo "&nbsp" .($page) . "&nbsp";?> </span>
+        <a href="products.php?page=<?php echo ($page+1);?>" style ="<?php if($page == $total_no_of_pages) echo 'pointer-events: none'; else echo '""'; ?>" > > </a> 
+    </div>
     
-
-    <!-- end of users Table -->
-
-    <!-- add user Form  -->
-
-
-    <!-- Form end  -->
-
 </div>
 </div>
 </body>
