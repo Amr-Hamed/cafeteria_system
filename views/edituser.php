@@ -20,7 +20,7 @@ if(isset($_POST["uSubmit"]) && isset($_POST["full-name"]) && isset($_POST["email
             $newUser->email=trim($_POST["email-address"]);
             $newUser->id=$user->id;
             $newUser->name=trim($_POST['full-name']);
-            $newUser->password=trim($_POST['password']);
+            $newUser->password=password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
             $newUser->room=$_POST["roomNumber"];
             $newUser->ext=$_POST["permanent-address"];
             $newUser->admin=$user->admin;
@@ -92,7 +92,7 @@ if(isset($_POST["uSubmit"]) && isset($_POST["full-name"]) && isset($_POST["email
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                             <div class="col-md-6">
-                                <input type="password" id="password" class="form-control" name="password" value="<?php if($from_validation==1){echo $password;} else {echo $user->password;}?>" required>
+                                <input type="password" id="password" class="form-control" name="password" value="<?php if($from_validation==1){echo $password;}?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                             </div>
                         </div>
 

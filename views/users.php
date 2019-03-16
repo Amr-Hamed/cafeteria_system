@@ -42,7 +42,15 @@ $users = DBModel::read("SELECT * FROM users",null);
                             <td><?php echo $user['room'];?></td>
                             <td>
                                 <div class="inset">
-                                    <img src=<?php echo $user['picture'];?>>
+                                    
+                                    <?php if($user['picture']!=='data:image/jpeg;base64,'){?>
+                                        <img src=<?php echo $user['picture'];?>>
+                                    <?php } else {?>
+                                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
+                                    <?php } ?>
+
+
+
                                 </div>
                             </td>
                             <td><?php echo $user['ext'];?></td>

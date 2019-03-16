@@ -98,12 +98,13 @@ $products = DBModel::read("SELECT * FROM products",null);
                         <tr>
                             <th scope="row"><?php echo $product['product_name']?></th>
                             <td><?php echo $product['price']?></td>
-                            <td>
+                            <td> 
                                 <div class="product_inset">
-                                
-                                <img class="card-img-top buy-pic" width="150" height="150" src=<?php echo $product['product_picture']; ?>  alt="Card image cap" />
-                                    <!-- <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200"> -->
-                                    
+                                <?php if($product['product_picture']!='data:image/jpeg;base64,'){?>
+                                    <img class="card-img-top buy-pic" width="150" height="150" src=<?php echo $product['product_picture'];?>>
+                                    <?php } else {?>
+                                        <img src="https://www.portugalbusinessontheway.com/wp-content/uploads/2019/02/SABORES-DAS-QUINAS-01.jpg" width="150" height="150">
+                                    <?php } ?>
                                 </div>
                             </td>
                             <td>
