@@ -29,7 +29,7 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0", null);
                     <div class="col-md-auto">
                         <input type="submit" value="Filter" class="btn btn-info" id="dateFilter" name="submit">
                     </div>
-                </form>
+               
             </div>
         </div>
 
@@ -44,7 +44,7 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0", null);
                 </label>
                 <div class="col-md-8">
                     <select name="user" style="width: 100%;padding-top:2%;margin-top:2%">
-                        <option selected>
+                        <option value="Select User" selected disabled>
                             <?php 
                             // if (isset($_POST['submit'])) {
                             //     $userSelected = $_POST['user'];
@@ -64,7 +64,7 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0", null);
         </div>
         <hr />
     </div>
-
+    </form>
     <!-- Users Table  -->
 
     <div style="width: 80%; margin: auto">
@@ -77,6 +77,9 @@ $users = DBModel::read("SELECT u.* FROM users u WHERE u.admin = 0", null);
             </thead>
             <tbody>
                 <?php 
+                if(isset($_POST['user']))
+                 $users = DBModel::read("SELECT u.* FROM users u WHERE u.id =". $_POST['user']);
+                              
                 if (isset($users)) {
                     foreach ($users as $user) { ?>
                 <tr class="header accordion-toggle" data-toggle="collapse" data-target="#demo5<?php echo $user['id']; ?>">
