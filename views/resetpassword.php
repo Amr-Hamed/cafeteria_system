@@ -48,15 +48,15 @@
 	        $mail->Body = "This is your new password for iti cafeteria :    ".$newPassword;
 
             if ($mail->send()){
-                echo "Your New Password Sent To Your Email, Please Check your Inbox<br><a href='./login.php'>Click Here To Log In</a>";
+                echo "Your New Password Sent To Your Email, Please Check your Inbox<br><a href='/index.php'>Click Here To Log In</a>";
             }
             else {
                 echo "Mail Send Error";
             }
 		} else
-			header('Location: /cafeteria_system/views/login.php');
+			header('Location: /');
 	 } else {
-		header('Location: /cafeteria_system/views/login.php');
+		header('Location: /');
 	}
 ?>
 

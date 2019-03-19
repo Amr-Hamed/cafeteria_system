@@ -16,7 +16,7 @@ ini_set('register_globals' , 0);
 define('DS' , DIRECTORY_SEPARATOR);
 define('PS' , PATH_SEPARATOR);
 //domaine related constants
-define( 'HOST_NAME' , 'https://' .  $_SERVER['HTTP_HOST'] . '/');
+define( 'HOST_NAME' , 'http://' .  $_SERVER['HTTP_HOST'] . '/');
 //paths
 define('APP_PATH' , realpath(dirname(__FILE__)) . DS );
 define( 'TEMPLATE_PATH' , APP_PATH . 'templates' . DS);

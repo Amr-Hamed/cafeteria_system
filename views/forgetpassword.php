@@ -36,8 +36,8 @@ if (isset($_POST['email'])) {
 	            Hi,<br><br>
 
 	            In order to reset your password, please click on the link below:<br>
-                <a href='http://localhost:8080/cafeteria_system/views/resetpassword.php?email=$email&token=$token'>
-                http://localhost:8080/cafeteria_system/views/resetpassword.php?email=$email&token=$token
+                <a href='". HOST_NAME ."/views/resetpassword.php?email=$email&token=$token'>
+                ". HOST_NAME ."views/resetpassword.php?email=$email&token=$token
                 </a><br><br>
 
 	            Kind Regards,<br>

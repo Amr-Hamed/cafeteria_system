@@ -58,7 +58,12 @@ $admin = $_SESSION['admin'];
                                              ?>
 
                                     <div class="card col-sm-2 product-card">
-                                    <img class="card-img-top buy-pic" src="<?php echo "data:image/jpeg;base64," . base64_encode($item['product_picture']); ?>" alt="Card image cap" />
+                                    <?php if($item['product_picture']){?>
+                                        <img class="card-img-top buy-pic" src="<?php echo ($item['product_picture']); ?>" alt="Card image cap" />
+                                        <?php } else {?>
+                                        <img src="https://www.portugalbusinessontheway.com/wp-content/uploads/2019/02/SABORES-DAS-QUINAS-01.jpg" width="150" height="150">
+                                          <?php } ?>
+
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $item['product_name']; ?></h5>
                                             <p class="card-text"><?php echo $item['price']; ?> . EGP</p>
